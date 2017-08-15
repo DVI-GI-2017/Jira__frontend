@@ -1,0 +1,44 @@
+{
+  "name": "JiraClone",
+  "version": "0.0.1",
+  "description": "",
+  "engines": {
+    "node": "^8.0.0"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --inline --port 5001 --content-base ./src --open",
+    "webpack": "webpack --config webpack.config.js",
+    "webpack-dev": "webpack --config webpack.config.js --watch",
+    "server": "node server.js",
+    "codeStyle": "./node_modules/tslint/bin/tslint -c tslint.json 'src/**/*.ts' -e 'src/app/lib/**/*.ts'",
+    "postinstall": "npm run webpack"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "@types/jquery": "3.2.9",
+    "@types/materialize-css": "0.98.3",
+    "@types/node": "7.0.12",
+    "awesome-typescript-loader": "3.1.2",
+    "css-loader": "0.26.1",
+    "express": "4.15.3",
+    "extract-text-webpack-plugin": "2.1.0",
+    "isomorphic-fetch": "2.2.1",
+    "jquery": "3.2.1",
+    "materialize-css": "0.100.1",
+    "node-sass": "4.5.2",
+    "raw-loader": "0.5.1",
+    "sass-loader": "5.0.1",
+    "scss-loader": "0.0.1",
+    "style-loader": "0.13.1",
+    "tslint": "5.5.0",
+    "typescript": "2.4.1",
+    "vue": "2.2.6",
+    "vue-class-component": "5.0.1",
+    "vue-router": "2.7.0",
+    "webpack": "2.3.2",
+    "webpack-dev-server": "2.4.2"
+  },
+  "dependencies": {
+    "@types/isomorphic-fetch": "0.0.34"
+  }
+}

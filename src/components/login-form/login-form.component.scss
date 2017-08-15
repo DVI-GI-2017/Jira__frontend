@@ -1,0 +1,54 @@
+.parent__form {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.block__form {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border: 4px double black;
+
+  &-form {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.button__login {
+  left: 125px;
+  top: 20px;
+
+  &__color {
+    background-color: #205081;
+  }
+
+  &__color:hover {
+    background-color: #2470b4;
+  }
+}
+
+.form__input-color:focus {
+  border-bottom: 1px solid #2470b4 !important;
+  -webkit-box-shadow: 0 1px 0 0 #2470b4 !important;
+  box-shadow: 0 1px 0 0 #2470b4 !important;
+}
+
+.form__label-color:focus + label {
+  color: #2470b4 !important;
+}
+
+.error__text {
+  color: #a02412;
+}

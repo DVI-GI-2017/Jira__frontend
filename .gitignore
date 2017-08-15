@@ -1,0 +1,8 @@
+node_modules/
+*.log
+.idea
+.DS_Store
+*.swp
+*.jsx
+src/build/
+src/libs/

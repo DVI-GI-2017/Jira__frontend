@@ -1,0 +1,17 @@
+.header__background {
+  background: #205081;
+}
+
+.not__transform__brand-logo {
+  left: 0 !important;
+  -webkit-transform: translateX(0) !important;
+  -moz-transform: translateX(0) !important;
+  -ms-transform: translateX(0) !important;
+  -o-transform: translateX(0) !important;
+  transform: translateX(0) !important;
+}
+
+.header__position {
+  z-index: 100;
+  position: fixed;
+}
