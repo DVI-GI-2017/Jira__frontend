@@ -45,6 +45,7 @@ import './login-form.component.scss';
                 </div>
             </div>`
 })
+
 export class LoginFormComponent extends Vue {
   public loginEmailInput: string = '';
   public loginPasswordInput: string = '';
