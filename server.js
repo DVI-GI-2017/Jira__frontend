@@ -11,20 +11,21 @@ app.use('/about', express.static('public'));
 
 app.use(parser.json());
 
-const backendOptions = {
-  host: 'jira-clone.herokuapp.com',
-  port: 443
-};
+const backendURL = 'http://jira-clone.herokuapp.com/api/v1';
 
-app.post('/api/v1/checkUser', function(req, res) {
+app.post('/api/v1/checkUser', (req, res) => {
   res.send(req.body);
 });
 
-app.get('/api/v1/cur-user', function(req, res) {
-  res.status(200).send('top');
+app.get('/api/v1/cur-user', (req, res) => {
+  http.get(`${backendURL}/cur-user`, (response) => {
+    res.sendStatus(response.statusCode);
+  }).on('error', (e) => {
+    res.send(e);
+  });
 });
 
-app.post('/api/v1/signup', function(req, res) {
+app.post('/api/v1/signup', (req, res) => {
   console.log(req.body);
 
   res.status(200).send(req.body);
