@@ -13,9 +13,6 @@ import SignUp from './views/SignUp/SignUp';
 import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
 import {Error} from './views/Error/Error';
-import Game from './views/Game/Game';
-import SinglePlayer from './views/SinglePlayer/SinglePlayer';
-import MultiPlayer from './views/MultiPlayer/MultiPlayer';
 
 import musicService from './service/MusicService/MusicService';
 import {setCurrentUser} from './actions/User/User.actions';
@@ -46,9 +43,6 @@ const App = () => (
         <Route path={ RoutesMap.SIGNUP } component={ SignUp as any }/>
         <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard as any }/>
         <Route path={ RoutesMap.ABOUT } component={ About as any }/>
-        <Route path={ RoutesMap.GAME } component={ Game as any }/>
-        <Route path={ RoutesMap.SINGLEPLAYER } component={ SinglePlayer as any } />
-        <Route path={ RoutesMap.MULTIPLAYER } component={ MultiPlayer as any } />
         <Route path='*' component={ Error as any }/>
       </Route>
     </Router>
