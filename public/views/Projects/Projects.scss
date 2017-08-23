@@ -1,8 +1,22 @@
-.tasks__text {
+.projects__text {
   color: #0D47A1;
 
   &-description {
     font-family: Roboto !important;
-    font-size: 20pt !important;
+    font-size: 26pt !important;
+
+    &-text {
+      font-family: Roboto !important;
+      text-align: left;
+    }
   }
+
+  &-tasks {
+    top: 40px !important;
+  }
+}
+
+.projects__top {
+  position: relative;
+  top: 20px;
 }
