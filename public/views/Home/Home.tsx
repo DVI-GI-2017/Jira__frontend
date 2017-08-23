@@ -8,8 +8,6 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Home.scss';
 
-const auth = localStorage.token;
-
 interface Props {
   isAuthenticated: boolean;
   user?: string;
