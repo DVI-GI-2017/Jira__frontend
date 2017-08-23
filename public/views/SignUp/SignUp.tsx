@@ -7,7 +7,7 @@ import Background from '../../components/Background/Background';
 import './SignUp.scss';
 
 const signUpFields = [{
-  title: 'Login',
+  title: 'Name',
   name: 'login',
   type: 'text',
   description: 'Must be at least 2 characters',

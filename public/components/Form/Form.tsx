@@ -152,14 +152,14 @@ class Form extends React.Component<Props, State> {
 
   _signInPack(data: any) {
     return {
-      'username': data[0].value,
+      'first_name': data[0].value,
       'password': data[1].value
     };
   }
 
   _signUpPack(data: any) {
     return {
-      'login': data[0].value,
+      'first_name': data[0].value,
       'email': data[1].value,
       'password': data[2].value
     };
