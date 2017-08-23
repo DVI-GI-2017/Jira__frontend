@@ -195,6 +195,8 @@ const mapDispatchToProps = (dispatch: any) => {
         browserHistory.push('/');
       }
 
+      console.log(await result.json());
+
       dispatch(togglePreloader());
 
       // .then((response: any) => {
