@@ -28,23 +28,87 @@ export class Projects extends React.Component<any, any> {
                 <p className="center-align text__decorator projects__text">
                   To do 6
                 </p>
-                <Task/>
-                <Task/>
-                <Task/>
-                <Task/>
-                <Task/>
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                /><Task
+                day="27"
+                month="Mar"
+                priority="High"
+                title="City Lights in New York"
+                description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                path="/tasks"
+              />
               </div>
               <div className="w3-col w3-container m4 l4">
                 <p className="center-align text__decorator projects__text">
                   In progress 2
                 </p>
-                <Task/>
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
               </div>
               <div className="w3-col w3-container m4 l4">
                 <p className="center-align text__decorator projects__text">
                   Done 145
                 </p>
-                <Task/>
+                <Task
+                  day="27"
+                  month="Mar"
+                  priority="High"
+                  title="City Lights in New York"
+                  description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
+                  path="/tasks"
+                />
               </div>
             </div>
           </div>
