@@ -30,6 +30,8 @@ export class Task extends React.Component<Props, any> {
             <div className="category">{priority}</div>
             <h1 className="title">{title}</h1>
             <p className="description">{description}</p>
+            <p className="initiator__block"><span className="sub_title initiator__title">Initiator:</span>
+              <span className="initiator__people">Blabla</span></p>
             <div className="post-meta">
               <Linked pathTo={path}>More</Linked>
             </div>

@@ -190,3 +190,20 @@ body {
   top: 40px;
   padding-bottom: 20px;
 }
+
+.initiator {
+  &__block {
+    position: relative;
+    top: 15px;
+  }
+
+  &__title {
+    position: relative;
+    right: 42px;
+  }
+
+  &__people {
+    position: relative;
+    right: 35px;
+  }
+}
