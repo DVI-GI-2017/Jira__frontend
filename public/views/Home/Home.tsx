@@ -103,30 +103,11 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    checkAuth: () => {
+    checkAuth: async () => {
       dispatch(togglePreloader());
 
-      checkAuthentication()
-        .then((response: any) => {
-        console.log(response.status);
-          return +response.status === 200 ? {
-            data: response.json(),
-            isLogin: true
-          } : {
-            isLogin: false
-          };
-        })
-        .then((data: any) => {
-          console.log(data);
-          if (data.isLogin) {
-            data.data
-              .then((user: any) => {
-                dispatch(togglePreloader());
-              });
-          } else {
-            dispatch(togglePreloader());
-          }
-        });
+      const result = await checkAuthentication();
+      console.log(await result.json());
     }
   }
 };
