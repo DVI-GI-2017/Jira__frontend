@@ -29,10 +29,6 @@ class Home extends React.Component<Props, void> {
     }
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     const {device} = this.props;
     const buttons: Array<any> = this._setButtons();

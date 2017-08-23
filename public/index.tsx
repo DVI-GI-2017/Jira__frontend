@@ -24,6 +24,7 @@ import './static/css/fonts.scss';
 import './static/css/main.scss';
 
 if (localStorage.token) {
+  console.log(localStorage.token);
   store.dispatch(setCurrentUser(localStorage.token));
 }
 
