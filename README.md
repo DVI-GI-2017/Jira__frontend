@@ -8,5 +8,5 @@
 
 #### Разработка и запуск
 - `npm install`,
-- `npm run server` - запуск сервера разработки, результат будет доступен по адресу [http://localhost:3000](http://localhost:3200)
+- `npm start` - запуск сервера разработки, результат будет доступен по адресу [http://localhost:3000](http://localhost:3200)
 - `npm run webpack-dev` - запуск сборки проекта
