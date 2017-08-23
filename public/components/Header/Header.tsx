@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {HeaderBase} from './HeaderBase/HeaderBase';
 import {HeaderTeam} from './HeaderTeam/HeaderTeam';
-import {HeaderHelp} from './HeaderHelp/HeaderHelp';
 
 import './Header.scss';
 
