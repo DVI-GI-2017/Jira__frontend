@@ -192,10 +192,14 @@ const mapDispatchToProps = (dispatch: any) => {
       console.log(result);
 
       if (+result.status === 200) {
+        const token: string = (await result.json()).token;
+        console.log(token);
+        localStorage.setItem('token', token);
+        console.log(localStorage.getItem('token'));
         browserHistory.push('/');
+      } else {
+        dispatch(setError(await result.json()));
       }
-
-      console.log(await result.json());
 
       dispatch(togglePreloader());
 
