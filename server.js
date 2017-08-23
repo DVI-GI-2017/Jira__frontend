@@ -56,7 +56,6 @@ app.post('/api/v1/signin', (req, res) => {
     });
   });
 
-  console.log(req.body);
   request.write(JSON.stringify(req.body));
   request.end();
 });
