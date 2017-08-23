@@ -69,12 +69,8 @@ class Home extends React.Component<Props, void> {
 
     return (
       <div
-        className={ isAuthenticated && device ?
-          'wrapper__form1' :
-          classes }>
-        <div className={ isAuthenticated && device ?
-          'wrapper__main__form1' :
-          'wrapper__main__form' }>
+        className={ classes }>
+        <div className='wrapper__main__form'>
           <div className='main__form'>
             { buttonsRender }
           </div>
