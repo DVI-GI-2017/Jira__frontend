@@ -28,7 +28,8 @@ app.get('/api/v1/cur-user', (req, res) => {
 
 app.post('/api/v1/signup', (req, res) => {
   const request = http.request({
-    host: 'jira-clone.herokuapp.com',
+    host: 'localhost',
+    port: 3000,
     path: '/api/v1/signup',
     method: 'POST'
   }, (response) => {
@@ -38,6 +39,24 @@ app.post('/api/v1/signup', (req, res) => {
     });
   });
 
+  request.write(JSON.stringify(req.body));
+  request.end();
+});
+
+app.post('/api/v1/signin', (req, res) => {
+  const request = http.request({
+    host: 'localhost',
+    port: 3000,
+    path: '/api/v1/signin',
+    method: 'POST'
+  }, (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(response.statusCode).send(data);
+    });
+  });
+
+  console.log(req.body);
   request.write(JSON.stringify(req.body));
   request.end();
 });

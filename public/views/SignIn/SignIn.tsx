@@ -8,11 +8,11 @@ import Form from '../../components/Form/Form';
 import './SignIn.scss';
 
 const signInFields = [{
-  title: 'Login',
-  name: 'login',
-  type: 'text',
-  description: 'Must be at least 2 characters',
-  placeholder: 'Ivan Petrov',
+  title: 'Email',
+  name: 'email',
+  type: 'email',
+  description: 'Email is email',
+  placeholder: 'ivanpetrov@mail.ru',
   error: ''
 }, {
   title: 'Password',
