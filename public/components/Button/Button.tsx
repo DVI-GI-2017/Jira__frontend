@@ -25,14 +25,8 @@ export class Button extends React.Component<Props, any> {
         onClick={ click }
         onMouseOver={ mouseOver }>
         <Linked pathTo={pathTo}>
-          <div
-            className={`main__form-button__background
-          ${isActive ? 'start__background' : ''}`}>
-            <p
-              className={`main__form-button__text
-            ${isActive ? 'start__button' : ''}`}>
-              { text }
-            </p>
+          <div className="w3-btn w3-indigo jira-button__size-md">
+            <p className="jira-button__text-position">{ text }</p>
           </div>
         </Linked>
       </div>
