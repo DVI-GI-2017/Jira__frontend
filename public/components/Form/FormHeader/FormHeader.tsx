@@ -8,7 +8,7 @@ export class FormHeader extends React.Component<any, any> {
   render() {
     return (
       <div className='form__header'>
-        <span>Soul Hunting</span>
+        <span>Jira clone</span>
       </div>
     );
   }
