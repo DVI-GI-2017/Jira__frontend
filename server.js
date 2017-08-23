@@ -1,5 +1,6 @@
 let express = require('express');
 let parser = require('body-parser');
+let http = require('http');
 let app = express();
 
 app.use('/', express.static('public'));
@@ -9,6 +10,11 @@ app.use('/projects', express.static('public'));
 app.use('/about', express.static('public'));
 
 app.use(parser.json());
+
+const backendOptions = {
+  host: 'jira-clone.herokuapp.com',
+  port: 443
+};
 
 app.post('/api/v1/checkUser', function(req, res) {
   res.send(req.body);
@@ -24,6 +30,6 @@ app.post('/api/v1/signup', function(req, res) {
   res.status(200).send(req.body);
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`App started on port ${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 3200, () => {
+  console.log(`App started on port ${process.env.PORT || 3200}`);
 });
