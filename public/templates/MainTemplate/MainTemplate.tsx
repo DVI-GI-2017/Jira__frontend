@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import PreLoader from '../../components/PreLoader/PreLoader';
 import {Header} from '../../components/Header/Header';
+import {Sidebar} from '../../components/Sidebar/Sidebar';
 
 import './MainTemplate.scss';
 
@@ -13,12 +14,12 @@ interface Props {
 
 class MainTemplate extends React.Component<Props, void> {
   render() {
-    // const { isAuthenticated } = this.props;
+    const { isAuthenticated } = this.props;
 
     return (
       <div className='wrapper'>
         <Header />
-        {/*{ isAuthenticated && <Sidebar /> }*/}
+        { isAuthenticated && <Sidebar /> }
         <PreLoader />
         { this.props.children }
       </div>
