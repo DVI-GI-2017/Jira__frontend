@@ -189,43 +189,16 @@ const mapDispatchToProps = (dispatch: any) => {
 
       const result = await send(url, data);
 
-      console.log(result);
-
       if (+result.status === 200) {
         const token: string = (await result.json()).token;
-        console.log(token);
         localStorage.setItem('token', token);
-        console.log(localStorage.getItem('token'));
+
         browserHistory.push('/');
       } else {
         dispatch(setError(await result.json()));
       }
 
       dispatch(togglePreloader());
-
-      // .then((response: any) => {
-        //   data = JSON.parse(data);
-        //   data = data.username ? data.username : data.login;
-        //
-        //   switch (+response.status) {
-        //     case 200:
-        //       dispatch(setError(''));
-        //       localStorage.setItem('token', data);
-        //       dispatch(setCurrentUser(data));
-        //       browserHistory.push('/');
-        //       break;
-        //     case 403:
-        //     case 404:
-        //     case 409:
-        //       return response.json();
-        //     default:
-        //       break;
-        //   }
-        // })
-        // .then((data: any) => {
-        //   dispatch(setError(data ? data.message : ''));
-        //   dispatch(togglePreloader());
-        // });
     }
   }
 };
