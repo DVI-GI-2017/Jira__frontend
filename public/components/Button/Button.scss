@@ -8,7 +8,7 @@
     margin: 0 auto 50px;
     height: 60px;
     width: 300px;
-    border: 2px solid #ccc !important;
+    border: 2px solid #000000 !important;
     border-radius: 4px !important;
     position: absolute;
     -webkit-transition-duration: 0.3s;
@@ -31,7 +31,7 @@
     font-size: 24pt;
     top: 25%;
     left: 4px;
-    color: white;
+    color: #1e3f97;
     cursor: pointer;
     position: relative;
     margin-left: -10px;
@@ -49,13 +49,13 @@
 }
 
 .start__background {
-  background: #FF6C00 !important;
-  border: 2px solid #FF6C00!important;
+  background: #b75758 !important;
+  border: 2px solid #b75758!important;
 }
 
 .start__button {
   font-size: 26pt !important;
-  color: black !important;
+  color: #1e3f97 !important;
 }
 
 .open__form__animation {
