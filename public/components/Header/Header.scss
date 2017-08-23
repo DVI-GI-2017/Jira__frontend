@@ -57,7 +57,8 @@
   &-team {
     font-size: 32pt;
     font-family: Roboto;
-    padding-top: 5px;
+    top: -5px;
+    position: relative;
   }
 
   &-register {
@@ -72,7 +73,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #25448d;
 }
 
 li {
@@ -85,8 +86,9 @@ li p {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  font-family: Roboto;
 }
 
 li p:hover {
-  background-color: #111;
+  background-color: rgba(49, 82, 205, 0.5);
 }
