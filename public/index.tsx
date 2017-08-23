@@ -10,11 +10,10 @@ import MainTemplate from './templates/MainTemplate/MainTemplate';
 import Home from './views/Home/Home';
 import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
-import Scoreboard from './views/Scoreboard/Scoreboard';
 import About from './views/About/About';
 import {Error} from './views/Error/Error';
+import {Projects} from './views/Projects/Projects';
 
-import musicService from './service/MusicService/MusicService';
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
 import {startServiceWorker} from './service/ServiceWorker/ServiceWorker';
@@ -30,8 +29,6 @@ if (localStorage.token) {
 
 store.dispatch(setDevice(new Device().isDesktop()));
 
-musicService.startBackground();
-
 startServiceWorker();
 
 const App = () => (
@@ -41,8 +38,8 @@ const App = () => (
         <IndexRoute component={ Home }/>
         <Route path={ RoutesMap.SIGNIN } component={ SignIn as any }/>
         <Route path={ RoutesMap.SIGNUP } component={ SignUp as any }/>
-        <Route path={ RoutesMap.SCOREBOARD } component={ Scoreboard as any }/>
         <Route path={ RoutesMap.ABOUT } component={ About as any }/>
+        <Route path={ RoutesMap.PROJECTS } component={ Projects as any }/>
         <Route path='*' component={ Error as any }/>
       </Route>
     </Router>
