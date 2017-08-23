@@ -10,6 +10,10 @@ app.use('/about', express.static('public'));
 
 app.use(parser.json());
 
+app.post('/api/v1/checkUser', function(req, res) {
+  res.send(req.body);
+});
+
 app.listen(process.env.PORT || 3000, () => {
   console.log(`App started on port ${process.env.PORT || 3000}`);
 });
