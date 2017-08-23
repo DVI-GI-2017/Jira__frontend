@@ -3,25 +3,12 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 
 import {Button} from '../../components/Button/Button';
-import {checkAuthentication, setCurrentUser, setScore} from '../../actions/User/User.actions';
-import {setActive} from '../../actions/Buttons/Buttons.actions';
+import {checkAuthentication} from '../../actions/User/User.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Home.scss';
 
 const auth = localStorage.token;
-
-const urls = auth ? [
-  '/game',
-  '/scoreboard',
-  '/about'
-] : [
-  '/signin',
-  '/signup'
-];
-
-// Error test:
-// click enter -> esc -> don't work
 
 interface Props {
   isAuthenticated: boolean;
