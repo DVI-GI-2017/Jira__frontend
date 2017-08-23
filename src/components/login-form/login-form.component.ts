@@ -9,10 +9,43 @@ import {isUndefined} from 'util';
   template: `<div class="parent__form">
                 <div class="block__form">
                     <div class="block__form-form">
-                      <p class="center-align">Добро пожалоать в <em>Jira</em></p>
+                      <p class="center-align">Добро пожалоать в <em>Jira Clone</em></p>
                       <div class="row">
                         <form class="col s12">
                           <p class="error__text center-align"></p>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input 
+                              id="email" 
+                              type="email" 
+                              class="validate form__input-color form__label-color"
+                              v-model='loginEmailInput'
+                              @keyup='checkEmail'>
+                              <label for="email" class="form__label-color">Email</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input 
+                              id="email" 
+                              type="email" 
+                              class="validate form__input-color form__label-color"
+                              v-model='loginEmailInput'
+                              @keyup='checkEmail'>
+                              <label for="email" class="form__label-color">Email</label>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <input 
+                              id="email" 
+                              type="email" 
+                              class="validate form__input-color form__label-color"
+                              v-model='loginEmailInput'
+                              @keyup='checkEmail'>
+                              <label for="email" class="form__label-color">Email</label>
+                            </div>
+                          </div>
                           <div class="row">
                             <div class="input-field col s12">
                               <input 
