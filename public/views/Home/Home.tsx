@@ -44,6 +44,10 @@ class Home extends React.Component<Props, void> {
     }
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     const {device} = this.props;
     const buttons: Array<any> = this._setButtons();
@@ -51,20 +55,20 @@ class Home extends React.Component<Props, void> {
 
     const buttonsRender: any = buttons.map((item, index) => {
       return (
-        <div key={ index }>
+        <div key={index}>
           <Button
-            text={ item.text }
-            isActive={ item.isActive }
+            text={item.text}
+            isActive={item.isActive}
             pathTo={item.url}/>
         </div>
       );
     });
 
     return (
-      <div className={ classes }>
+      <div className={classes}>
         <div className='wrapper__main__form'>
           <div className='main__form'>
-            { buttonsRender }
+            {buttonsRender}
           </div>
         </div>
       </div>
@@ -93,28 +97,18 @@ const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     user: state.authentication.user,
-    current: state.buttons[0].current,
-    button1: state.buttons[1].button,
-    button2: state.buttons[2].button,
-    button3: state.buttons[3].button,
     device: state.device
   }
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setActive: (button1: boolean,
-                button2: boolean,
-                button3: boolean,
-                current: boolean) => {
-      dispatch(setActive(button1, button2, button3, current));
-    },
-
     checkAuth: () => {
       dispatch(togglePreloader());
 
       checkAuthentication()
         .then((response: any) => {
+        console.log(response.status);
           return +response.status === 200 ? {
             data: response.json(),
             isLogin: true
@@ -123,18 +117,13 @@ const mapDispatchToProps = (dispatch: any) => {
           };
         })
         .then((data: any) => {
+          console.log(data);
           if (data.isLogin) {
             data.data
               .then((user: any) => {
-                localStorage.setItem('token', user.login);
-                localStorage.setItem('id', user.id);
-                dispatch(setCurrentUser(user.login));
                 dispatch(togglePreloader());
               });
           } else {
-            localStorage.removeItem('token');
-            localStorage.removeItem('id');
-            dispatch(setCurrentUser(''));
             dispatch(togglePreloader());
           }
         });

@@ -14,6 +14,10 @@ app.post('/api/v1/checkUser', function(req, res) {
   res.send(req.body);
 });
 
+app.get('/api/v1/cur-user', function(req, res) {
+  res.status(200).send('top');
+});
+
 app.listen(process.env.PORT || 3000, () => {
   console.log(`App started on port ${process.env.PORT || 3000}`);
 });
