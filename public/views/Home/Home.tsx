@@ -24,9 +24,9 @@ class Home extends React.Component<Props, void> {
   componentWillMount() {
     this.props.checkAuth();
 
-    // if (this.props.isAuthenticated) {
-    //   browserHistory.push('/projects');
-    // }
+    if (this.props.isAuthenticated) {
+      browserHistory.push('/projects');
+    }
   }
 
   render() {

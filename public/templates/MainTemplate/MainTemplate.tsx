@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import {Logo} from '../../components/Logo/Logo';
 import PreLoader from '../../components/PreLoader/PreLoader';
 import {Header} from '../../components/Header/Header';
 
@@ -14,11 +13,13 @@ interface Props {
 
 class MainTemplate extends React.Component<Props, void> {
   render() {
+    // const { isAuthenticated } = this.props;
+
     return (
       <div className='wrapper'>
         <Header />
+        {/*{ isAuthenticated && <Sidebar /> }*/}
         <PreLoader />
-        <Logo />
         { this.props.children }
       </div>
     );
