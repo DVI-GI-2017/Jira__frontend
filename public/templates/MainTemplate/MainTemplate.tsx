@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import {Logo} from '../../components/Logo/Logo';
 import PreLoader from '../../components/PreLoader/PreLoader';
 import {Header} from '../../components/Header/Header';
-import UserBlock from '../../components/UserBlock/UserBlock';
 
 import './MainTemplate.scss';
 
@@ -15,12 +14,9 @@ interface Props {
 
 class MainTemplate extends React.Component<Props, void> {
   render() {
-    const { isAuthenticated, device } = this.props;
-
     return (
       <div className='wrapper'>
         <Header />
-        { isAuthenticated && <UserBlock /> }
         <PreLoader />
         <Logo />
         { this.props.children }
