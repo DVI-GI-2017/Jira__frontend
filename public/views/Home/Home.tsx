@@ -107,7 +107,9 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(togglePreloader());
 
       const result = await checkAuthentication();
-      console.log(await result.json());
+      console.log(result);
+
+      dispatch(togglePreloader());
     }
   }
 };

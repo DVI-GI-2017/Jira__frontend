@@ -18,6 +18,12 @@ app.get('/api/v1/cur-user', function(req, res) {
   res.status(200).send('top');
 });
 
+app.post('/api/v1/signup', function(req, res) {
+  console.log(req.body);
+
+  res.status(200).send(req.body);
+});
+
 app.listen(process.env.PORT || 3000, () => {
   console.log(`App started on port ${process.env.PORT || 3000}`);
 });

@@ -185,33 +185,42 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(setError(error));
     },
 
-    send: (url: string, data: any) => {
+    send: async (url: string, data: any) => {
       dispatch(togglePreloader());
 
-      send(url, data)
-        .then((response: any) => {
-          data = JSON.parse(data);
-          data = data.username ? data.username : data.login;
+      const result = await send(url, data);
 
-          switch (+response.status) {
-            case 200:
-              dispatch(setError(''));
-              localStorage.setItem('token', data);
-              dispatch(setCurrentUser(data));
-              browserHistory.push('/');
-              break;
-            case 403:
-            case 404:
-            case 409:
-              return response.json();
-            default:
-              break;
-          }
-        })
-        .then((data: any) => {
-          dispatch(setError(data ? data.message : ''));
-          dispatch(togglePreloader());
-        });
+      console.log(result);
+
+      if (+result.status === 200) {
+        browserHistory.push('/');
+      }
+
+      dispatch(togglePreloader());
+
+      // .then((response: any) => {
+        //   data = JSON.parse(data);
+        //   data = data.username ? data.username : data.login;
+        //
+        //   switch (+response.status) {
+        //     case 200:
+        //       dispatch(setError(''));
+        //       localStorage.setItem('token', data);
+        //       dispatch(setCurrentUser(data));
+        //       browserHistory.push('/');
+        //       break;
+        //     case 403:
+        //     case 404:
+        //     case 409:
+        //       return response.json();
+        //     default:
+        //       break;
+        //   }
+        // })
+        // .then((data: any) => {
+        //   dispatch(setError(data ? data.message : ''));
+        //   dispatch(togglePreloader());
+        // });
     }
   }
 };
