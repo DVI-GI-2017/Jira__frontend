@@ -2,6 +2,7 @@ import * as Vue from 'vue';
 import Component from 'vue-class-component';
 
 import './login-form.component.scss';
+import {isUndefined} from 'util';
 
 
 @Component({
@@ -11,13 +12,13 @@ import './login-form.component.scss';
                       <p class="center-align">Добро пожалоать в <em>Jira</em></p>
                       <div class="row">
                         <form class="col s12">
-                          <p class="error__text center-align">• Ошибка</p>
+                          <p class="error__text center-align"></p>
                           <div class="row">
                             <div class="input-field col s12">
                               <input 
                               id="email" 
                               type="email" 
-                              class="form__input-color form__label-color"
+                              class="validate form__input-color form__label-color"
                               v-model='loginEmailInput'
                               @keyup='checkEmail'>
                               <label for="email" class="form__label-color">Email</label>
@@ -28,7 +29,7 @@ import './login-form.component.scss';
                               <input 
                               id="password" 
                               type="password" 
-                              class="form__input-color form__label-color"
+                              class="validate form__input-color form__label-color"
                               v-model='loginPasswordInput'>
                               <label for="password">Password</label>
                             </div>
@@ -39,6 +40,7 @@ import './login-form.component.scss';
                           :disabled='getIsValid'>
                             Войти
                           </a>
+                          <a class="waves-effect waves-light btn signup__button">Регистрация</a>
                         </form>
                       </div>
                     </div>
@@ -51,6 +53,11 @@ export class LoginFormComponent extends Vue {
   public loginPasswordInput: string = '';
   private emailRegExp: RegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private isValid: boolean = false;
+  private errorText: HTMLElement;
+
+  public mounted() {
+    this.errorText = document.querySelector('.error__text') as HTMLElement;
+  }
 
   public checkEmail(): boolean {
     return this.loginEmailInput.length > 5 && this.emailRegExp.test(this.loginEmailInput);
@@ -65,7 +72,11 @@ export class LoginFormComponent extends Vue {
   }
 
   public get getIsValid() {
-    return !this.checkEmail() || !this.checkPassword();
+    console.log("em:", this.checkEmail());
+    console.log("p:", this.checkPassword());
+    console.log("a:", this.checkEmail() && this.checkPassword());
+
+    return !(this.checkEmail() && this.checkPassword());
   }
 
   public get formData() {
