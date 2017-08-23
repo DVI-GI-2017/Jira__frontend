@@ -66,6 +66,6 @@ class Transport {
 }
 
 const transport = new Transport();
-transport.BaseUrl = `${window.location.href}api/v1`;
+transport.BaseUrl = `http://${window.location.host}/api/v1`;
 
 export default transport;

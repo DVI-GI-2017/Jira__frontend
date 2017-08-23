@@ -12,7 +12,6 @@ import {FormContent} from './FormContent/FormContent';
 import FormButton from './FormButton/FormButton';
 import validate from '../../service/Validators/index';
 import {send, setError} from '../../actions/Form/Form.actions';
-import {setCurrentUser} from '../../actions/User/User.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './Form.scss';
