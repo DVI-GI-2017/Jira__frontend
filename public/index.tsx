@@ -12,7 +12,7 @@ import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
 import About from './views/About/About';
 import {Error} from './views/Error/Error';
-import {Projects} from './views/Projects/Projects';
+import Projects from './views/Projects/Projects';
 
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
