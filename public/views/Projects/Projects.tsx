@@ -15,9 +15,16 @@ interface Props {
   project: any;
   tasks: Array<any>;
   getProjectsList: () => void;
+  firstColumnTasks: Array<any>;
+  secondColumnTasks: any;
+  thirdColumnTasks: any;
 }
 
 class Projects extends React.Component<Props, any> {
+  private firstColumnTasks: Array<any>;
+  private secondColumnTasks: any;
+  private thirdColumnTasks: any;
+
   componentWillMount() {
     if (!this.props.isAuthenticated) {
       browserHistory.push('/');
@@ -33,6 +40,21 @@ class Projects extends React.Component<Props, any> {
     console.log(tasks);
 
     project = typeof project[0] === 'object' ? project[0] : project;
+
+    const projectsRender: any = tasks.map((item, index) => {
+      return (
+        <Task
+          day='27'
+          month='Mar'
+          priority='High'
+          title={item.title}
+          description={item.description}
+          path={`/tasks${item._id}`}
+          initiator={item.initiator_id.length > 10 ? `${item.initiator_id.slice(0, 10)}...` : item.initiator_id}
+          key={index}
+        />
+      );
+    });
 
     return (
       <Content>
@@ -50,56 +72,65 @@ class Projects extends React.Component<Props, any> {
           <div className='projects__top'>
             <div className='w3-row'>
               <div className='w3-col w3-container m4 l4'>
-                <Task
-                  day='27'
-                  month='Mar'
-                  priority='Low'
-                  title='City Lights in New York'
-                  description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'
-                  path='/tasks'
-                />
-                <Task
-                  day='27'
-                  month='Mar'
-                  priority='High'
-                  title='City Lights in New York'
-                  description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'
-                  path='/tasks'
-                />
+                {projectsRender}
               </div>
               <div className='w3-col w3-container m4 l4 task__mobile-progress'>
-                <Task
-                  day='27'
-                  month='Mar'
-                  priority='Medium'
-                  title='City Lights in New York'
-                  description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'
-                  path='/tasks'
-                />
-                <Task
-                  day='27'
-                  month='Mar'
-                  priority='High'
-                  title='City Lights in New York'
-                  description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'
-                  path='/tasks'
-                />
+                {/*<Task*/}
+                  {/*day='27'*/}
+                  {/*month='Mar'*/}
+                  {/*priority='Medium'*/}
+                  {/*title='City Lights in New York'*/}
+                  {/*description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'*/}
+                  {/*path='/tasks'*/}
+                {/*/>*/}
+                {/*<Task*/}
+                  {/*day='27'*/}
+                  {/*month='Mar'*/}
+                  {/*priority='High'*/}
+                  {/*title='City Lights in New York'*/}
+                  {/*description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'*/}
+                  {/*path='/tasks'*/}
+                {/*/>*/}
               </div>
               <div className='w3-col w3-container m4 l4 task__mobile-done'>
-                <Task
-                  day='27'
-                  month='Mar'
-                  priority='High'
-                  title='City Lights in New York'
-                  description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'
-                  path='/tasks'
-                />
+                {/*<Task*/}
+                  {/*day='27'*/}
+                  {/*month='Mar'*/}
+                  {/*priority='High'*/}
+                  {/*title='City Lights in New York'*/}
+                  {/*description='New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.'*/}
+                  {/*path='/tasks'*/}
+                {/*/>*/}
               </div>
             </div>
           </div>
         </div>
       </Content>
     );
+  }
+
+  private setupTasks(tasks: Array<any>): any {
+    tasks.map((item, index) => {
+      switch (index % 3) {
+        case 0:
+          this.firstColumnTasks.push(
+            <Task
+              day='27'
+              month='Mar'
+              priority='High'
+              title={item.title}
+              description={item.description}
+              path={`/tasks${item._id}`}
+            />
+          )
+      }
+    });
+
+    return {
+      firstColumnTasks: this.firstColumnTasks,
+      secondColumnTasks: this.secondColumnTasks,
+      thirdColumnTasks: this.thirdColumnTasks
+    }
   }
 }
 
