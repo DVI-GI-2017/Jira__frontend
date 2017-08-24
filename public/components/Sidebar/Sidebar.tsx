@@ -20,16 +20,18 @@ class Sidebar extends React.Component<Props, any> {
 
   render() {
     const {projects}: any = this.props.projects;
-    console.log(projects.projects);
+
+    const projectsRender: any = projects.map((item, index) => {
+      return (
+        <Linked pathTo="/projects" key={index}>
+          <p className="w3-bar-item w3-button">{item.title}</p>
+        </Linked>
+      );
+    });
 
     return (
       <div className="w3-sidebar w3-light-grey w3-bar-block left__navbar">
-        <Linked pathTo="/projects">
-          <p className="w3-bar-item w3-button">Project1</p>
-        </Linked>
-        <Linked pathTo="/tasks">
-          <p className="w3-bar-item w3-button">Project2</p>
-        </Linked>
+        {projectsRender}
       </div>
     );
   }
