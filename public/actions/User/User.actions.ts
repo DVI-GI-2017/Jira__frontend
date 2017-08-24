@@ -8,14 +8,6 @@ export function setCurrentUser(user: any): any {
   };
 }
 
-export function setScore(data: any): any {
-  return transport.post('/score', data);
-}
-
 export function checkAuthentication(): any {
   return transport.get('/cur-user');
-}
-
-export function logoutUser(): any {
-  return transport.post('/logout');
 }
