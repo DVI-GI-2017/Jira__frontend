@@ -88,7 +88,10 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(togglePreloader());
 
       const result = await checkAuthentication();
-      console.log(result);
+
+      if (+result.status === 200) {
+        browserHistory.push('/projects');
+      }
 
       dispatch(togglePreloader());
     }
