@@ -28,15 +28,12 @@ class Projects extends React.Component<Props, any> {
 
   render() {
     let {project}: any = this.props.project;
+    console.log(project);
 
-    project = typeof project[0] === 'object' ? project[0] : project;
+    project = typeof project[0] === 'object'
 
     return (
       <Content>
-        <div className='w3-container'>
-          <h1 className='center-align projects__text-title'>{project.title}</h1>
-        </div>
-
         <div className='w3-container'>
           <h1 className='center-align projects__text-description'>Description</h1>
           <p className='left-align projects__text-description-text projects__top'>
@@ -49,9 +46,6 @@ class Projects extends React.Component<Props, any> {
           <div className='projects__top'>
             <div className='w3-row'>
               <div className='w3-col w3-container m4 l4'>
-                <p className='center-align text__decorator projects__text'>
-                  To do 6
-                </p>
                 <Task
                   day='27'
                   month='Mar'
@@ -70,9 +64,6 @@ class Projects extends React.Component<Props, any> {
                 />
               </div>
               <div className='w3-col w3-container m4 l4 task__mobile-progress'>
-                <p className='center-align text__decorator projects__text'>
-                  In progress 2
-                </p>
                 <Task
                   day='27'
                   month='Mar'
@@ -91,9 +82,6 @@ class Projects extends React.Component<Props, any> {
                 />
               </div>
               <div className='w3-col w3-container m4 l4 task__mobile-done'>
-                <p className='center-align text__decorator projects__text'>
-                  Done 145
-                </p>
                 <Task
                   day='27'
                   month='Mar'
