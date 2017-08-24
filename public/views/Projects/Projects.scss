@@ -1,6 +1,12 @@
 .projects__text {
   color: #0D47A1;
 
+  &-title {
+    font-family: 'Roboto' !important;
+    font-size: 30pt !important;
+    padding-bottom: 10px;
+  }
+
   &-description {
     font-family: Roboto !important;
     font-size: 26pt !important;
