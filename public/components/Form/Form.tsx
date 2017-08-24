@@ -193,7 +193,7 @@ const mapDispatchToProps = (dispatch: any) => {
         const token: string = (await result.json()).token;
         localStorage.setItem('token', token);
 
-        browserHistory.push('/');
+        browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));
       }
