@@ -78,6 +78,23 @@ app.get('/api/v1/projects', (req, res) => {
   });
 });
 
+app.get('/api/v1/tasks', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: '/api/v1/tasks',
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.send(e);
+  });
+});
+
 app.listen(process.env.PORT || 3200, () => {
   console.log(`App started on port ${process.env.PORT || 3200}`);
 });

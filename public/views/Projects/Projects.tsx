@@ -6,12 +6,14 @@ import {Content} from '../../components/Content/Content';
 import {Task} from '../../components/Task/Task';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import {getProjects, setCurrentProjects} from '../../actions/Project/Project.actions';
+import {getTasks, setTasks} from '../../actions/Tasks/Tasks.actions';
 
 import './Projects.scss';
 
 interface Props {
   isAuthenticated: boolean;
   project: any;
+  tasks: Array<any>;
   getProjectsList: () => void;
 }
 
@@ -27,8 +29,8 @@ class Projects extends React.Component<Props, any> {
   }
 
   render() {
-    let {project}: any = this.props.project;
-    console.log(project);
+    let {project, tasks}: any = this.props;
+    console.log(tasks);
 
     project = typeof project[0] === 'object' ? project[0] : project;
 
@@ -104,7 +106,8 @@ class Projects extends React.Component<Props, any> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
-    project: state.project
+    project: state.project.project,
+    tasks: state.tasks.tasks
   }
 };
 
@@ -113,14 +116,14 @@ const mapDispatchToProps = (dispatch: any) => {
     getProjectsList: async () => {
       dispatch(togglePreloader());
 
-      const result = await getProjects();
+      const [projects, tasks] = await Promise.all([getProjects(), getTasks()]);
 
-      dispatch(setCurrentProjects(await result.json()));
+      dispatch(setCurrentProjects(await projects.json()));
+      dispatch(setTasks(await tasks.json()));
       dispatch(togglePreloader());
     }
   }
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Projects as any);
 
