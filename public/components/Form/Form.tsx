@@ -159,7 +159,7 @@ class Form extends React.Component<Props, State> {
 
   _signUpPack(data: any) {
     return {
-      'first_name': data[0].value,
+      'name': data[0].value,
       'email': data[1].value,
       'password': data[2].value
     };
@@ -196,7 +196,6 @@ const mapDispatchToProps = (dispatch: any) => {
         localStorage.setItem('user', JSON.stringify(user));
 
         dispatch(setCurrentUser(JSON.stringify(user)));
-        // dispatch(togglePreloader());
 
         browserHistory.push('/projects');
       } else {

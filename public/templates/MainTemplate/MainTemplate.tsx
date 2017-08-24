@@ -19,7 +19,7 @@ class MainTemplate extends React.Component<Props, void> {
     return (
       <div className='wrapper'>
         <Header />
-        { isAuthenticated && <Sidebar /> }
+        { isAuthenticated && window.location.pathname.indexOf('projects') !== -1 && <Sidebar /> }
         <PreLoader />
         { this.props.children }
       </div>
