@@ -1,6 +1,6 @@
 import transport from '../../service/Transport/Transoprt';
 
-export function getProjects(data: any): any {
+export function getProjects(): any {
   return transport.get('/projects');
 }
 
