@@ -30,7 +30,7 @@ if (localStorage.token) {
 
 store.dispatch(setDevice(new Device().isDesktop()));
 
-startServiceWorker();
+// startServiceWorker();
 
 const App = () => (
   <Provider store={ store }>
