@@ -47,7 +47,8 @@ class Transport {
     return {
       method: options.method,
       headers: {
-        'Content-Type': 'application/json; charset=utf-8'
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       },
       body: options.body,
       credentials: 'include',

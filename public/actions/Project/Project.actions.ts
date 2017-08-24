@@ -1,7 +1,7 @@
 import transport from '../../service/Transport/Transoprt';
 
 export function getProjects(data: any): any {
-  return transport.post('/projects', data);
+  return transport.get('/projects');
 }
 
 export function checkAuthentication(): any {
