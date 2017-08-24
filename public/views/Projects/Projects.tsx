@@ -4,32 +4,39 @@ import {browserHistory} from 'react-router';
 
 import {Content} from '../../components/Content/Content';
 import {Task} from '../../components/Task/Task';
+import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
+import {getProjects, setCurrentProjects} from '../../actions/Project/Project.actions';
 
 import './Projects.scss';
 
 interface Props {
   isAuthenticated: boolean;
+  project: any;
+  getProjectsList: () => void;
 }
 
 class Projects extends React.Component<Props, any> {
   componentWillMount() {
     if (!this.props.isAuthenticated) {
       browserHistory.push('/');
+
+      return;
     }
+
+    this.props.getProjectsList();
   }
 
   render() {
+    let {project}: any = this.props.project;
+
+    project = typeof project[0] === 'object' ? project[0] : project;
+
     return (
       <Content>
         <div className='w3-container'>
           <h1 className='center-align projects__text-description'>Description</h1>
           <p className='left-align projects__text-description-text projects__top'>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-            laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
-            ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in
-            hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
-            eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te
-            feugait nulla facilisi.
+            {project.description}
           </p>
         </div>
 
@@ -102,9 +109,24 @@ class Projects extends React.Component<Props, any> {
 
 const mapStateToProps = (state: any) => {
   return {
-    isAuthenticated: state.authentication.isAuthenticated
+    isAuthenticated: state.authentication.isAuthenticated,
+    project: state.project
   }
 };
 
-export default connect(mapStateToProps)(Projects as any);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getProjectsList: async () => {
+      dispatch(togglePreloader());
+
+      const result = await getProjects();
+
+      dispatch(setCurrentProjects(await result.json()));
+      dispatch(togglePreloader());
+    }
+  }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects as any);
 

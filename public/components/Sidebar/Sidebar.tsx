@@ -1,16 +1,17 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 
-import {Linked} from '../Linked/Linked';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
-import {getProjects, setProjects} from '../../actions/Project/Project.actions';
+import {getProjects, setCurrentProjects, setProjects} from '../../actions/Project/Project.actions';
 
 import './Sidebar.scss';
 
 interface Props {
   isAuthenticated: boolean;
   projects: Array<any>;
+  project: any;
   getProjectsList: () => void;
+  setProject: (any) => void;
 }
 
 class Sidebar extends React.Component<Props, any> {
@@ -23,9 +24,9 @@ class Sidebar extends React.Component<Props, any> {
 
     const projectsRender: any = projects.map((item, index) => {
       return (
-        <Linked pathTo="/projects" key={index}>
+        <div onClick={this.props.setProject.bind(this, item)} key={index}>
           <p className="w3-bar-item w3-button">{item.title}</p>
-        </Linked>
+        </div>
       );
     });
 
@@ -50,8 +51,15 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(togglePreloader());
 
       const result = await getProjects();
+      const project = await result.json();
 
-      dispatch(setProjects(await result.json()));
+      dispatch(setProjects(project));
+      dispatch(setCurrentProjects(project[0]));
+      dispatch(togglePreloader());
+    },
+    setProject: async (project: any) => {
+      dispatch(togglePreloader());
+      dispatch(setCurrentProjects(project));
       dispatch(togglePreloader());
     }
   }

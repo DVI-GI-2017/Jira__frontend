@@ -1,5 +1,5 @@
 import transport from '../../service/Transport/Transoprt';
-import {SET_PROJECTS} from '../../constants/Projects/Projects.constants';
+import {SET_PROJECTS, SET_CURRENT_PROJECTS} from '../../constants/Projects/Projects.constants';
 
 export function setProjects(projects: Array<any>): any {
   return {
@@ -8,14 +8,17 @@ export function setProjects(projects: Array<any>): any {
   };
 }
 
+export function setCurrentProjects(project: any): any {
+  return {
+    type: SET_CURRENT_PROJECTS,
+    project
+  };
+}
+
 export function getProjects(): any {
   return transport.get('/projects');
 }
 
-export function checkAuthentication(): any {
-  return transport.get('/cur-user');
-}
-
-export function logoutUser(): any {
-  return transport.post('/logout');
+export function getProject(filter: string): any {
+  return transport.get(`/project/${filter}`);
 }
