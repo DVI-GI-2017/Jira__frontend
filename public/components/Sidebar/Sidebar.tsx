@@ -20,7 +20,6 @@ class Sidebar extends React.Component<Props, any> {
 
   render() {
     const {projects}: any = this.props.projects;
-    console.log(projects);
 
     const projectsRender: any = projects.map((item, index) => {
       return (
