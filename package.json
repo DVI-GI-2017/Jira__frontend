@@ -1,7 +1,7 @@
 {
-  "name": "soul-hunting",
+  "name": "Jira clone",
   "version": "1.0.0",
-  "description": "Soul-hunting",
+  "description": "Jira clone",
   "main": "bundle.js",
   "scripts": {
     "start": "node server.js",
@@ -10,7 +10,7 @@
     "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js",
     "webpack-dev": "./node_modules/.bin/webpack --config webpack.config.dev.js"
   },
-  "author": "Ananymous",
+  "author": "Jira clone",
   "license": "ISC",
   "dependencies": {
     "@types/isomorphic-fetch": "0.0.34",
