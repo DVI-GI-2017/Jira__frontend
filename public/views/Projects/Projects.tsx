@@ -40,7 +40,6 @@ class Projects extends React.Component<Props, any> {
             {project.description}
           </p>
         </div>
-
         <div className='w3-container projects__top projects__text-tasks'>
           <h1 className='center-align projects__text-description'>Tasks</h1>
           <div className='projects__top'>
