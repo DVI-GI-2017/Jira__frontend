@@ -2,23 +2,24 @@ language: node_js
 sudo: false
 node_js:
 - '7'
+
 branches:
   only:
   - master
-addons:
-  apt:
-    packages:
-      - sshpass
+  - develop
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: b9ec777b-f764-4ff1-abc5-55ef220ecdef
+  app: jira-dvi-gi
+  on:
+    repo: DVI-GI-2017/Jira__forntend
+    branch: master
+  skip_cleanup: true
+
 before_script:
   - npm install
-script:
-  - npm run codeStyle
-  - npm run tests
-  - npm run webpack-prod
-after_success:
-  - mkdir archive
-  - mv * archive
-  - tar -czf package.tgz archive
-  - scp -o StrictHostKeychecking=no package.tgz $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
-  - sshpass ssh -o StrictHostKeychecking=no $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && ./deploy.sh"
 
+script:
+  - npm run webpack-prod
