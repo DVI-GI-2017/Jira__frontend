@@ -226,3 +226,16 @@ body {
   text-decoration: solid;
   color: #0D47A1;
 }
+
+
+@media (max-width: 600px) {
+  .task__mobile-progress {
+    position: relative;
+    top: 70px;
+  }
+
+  .task__mobile-done {
+    position: relative;
+    top: 140px;
+  }
+}

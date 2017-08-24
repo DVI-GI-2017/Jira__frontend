@@ -76,7 +76,7 @@ export class Projects extends React.Component<any, any> {
                 path="/tasks"
               />
               </div>
-              <div className="w3-col w3-container m4 l4">
+              <div className="w3-col w3-container m4 l4 task__mobile-progress">
                 <p className="center-align text__decorator projects__text">
                   In progress 2
                 </p>
@@ -97,7 +97,7 @@ export class Projects extends React.Component<any, any> {
                   path="/tasks"
                 />
               </div>
-              <div className="w3-col w3-container m4 l4">
+              <div className="w3-col w3-container m4 l4 task__mobile-done">
                 <p className="center-align text__decorator projects__text">
                   Done 145
                 </p>
