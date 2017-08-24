@@ -1,2 +1,0 @@
-export const SINGLEPLAYER = 'SINGLEPLAYER';
-export const MULTIPLAYER = 'MULTIPLAYER';

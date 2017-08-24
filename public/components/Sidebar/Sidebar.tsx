@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {Linked} from '../Linked/Linked';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
-import {getProjects} from '../../actions/Project/Project.actions';
+import {getProjects, setProjects} from '../../actions/Project/Project.actions';
 
 import './Sidebar.scss';
 
@@ -14,8 +14,13 @@ interface Props {
 }
 
 class Sidebar extends React.Component<Props, any> {
-  render() {
+  componentWillMount() {
     this.props.getProjectsList();
+  }
+
+  render() {
+    const {projects}: any = this.props.projects;
+    console.log(projects.projects);
 
     return (
       <div className="w3-sidebar w3-light-grey w3-bar-block left__navbar">
@@ -33,7 +38,7 @@ class Sidebar extends React.Component<Props, any> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
-    projects: state.prejects
+    projects: state.projects
   }
 };
 
@@ -44,8 +49,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
       const result = await getProjects();
 
-      console.log((await result.json()));
-
+      dispatch(setProjects(await result.json()));
       dispatch(togglePreloader());
     }
   }
