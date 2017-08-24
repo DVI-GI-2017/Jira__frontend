@@ -30,7 +30,7 @@ class Projects extends React.Component<Props, any> {
     let {project}: any = this.props.project;
     console.log(project);
 
-    project = typeof project[0] === 'object'
+    project = typeof project[0] === 'object' ? project[0] : project;
 
     return (
       <Content>
