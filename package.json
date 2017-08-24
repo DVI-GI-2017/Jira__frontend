@@ -16,6 +16,7 @@
     "@types/isomorphic-fetch": "0.0.34",
     "@types/react-css-modules": "4.2.0",
     "http": "0.0.0",
+    "https": "^1.0.0",
     "isomorphic-fetch": "2.2.1",
     "react": "15.5.4",
     "react-css-modules": "4.3.0",
