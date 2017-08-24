@@ -15,7 +15,8 @@ const backendURI = 'http://jira-clone.herokuapp.com/api/v1';
 const backendURL = 'jira-clone.herokuapp.com';
 
 const baseOptionsBackend = {
-  host: backendURL
+  host: backendURL,
+  port: 443
 };
 
 app.post('/api/v1/checkUser', (req, res) => {
