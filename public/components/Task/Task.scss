@@ -207,3 +207,17 @@ body {
     right: 35px;
   }
 }
+
+.task-priority__color- {
+  &high {
+    background: #e71212 !important;
+  }
+
+  &medium {
+    background: #cc7020 !important;
+  }
+
+  &low {
+    background: #6fcc00 !important;
+  }
+}

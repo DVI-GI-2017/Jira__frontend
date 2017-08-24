@@ -31,7 +31,7 @@ export class Projects extends React.Component<any, any> {
                 <Task
                   day="27"
                   month="Mar"
-                  priority="High"
+                  priority="Low"
                   title="City Lights in New York"
                   description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
                   path="/tasks"
@@ -83,7 +83,7 @@ export class Projects extends React.Component<any, any> {
                 <Task
                   day="27"
                   month="Mar"
-                  priority="High"
+                  priority="Medium"
                   title="City Lights in New York"
                   description="New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers."
                   path="/tasks"
