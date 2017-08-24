@@ -196,7 +196,7 @@ const mapDispatchToProps = (dispatch: any) => {
         localStorage.setItem('user', JSON.stringify(user));
 
         dispatch(setCurrentUser(JSON.stringify(user)));
-        dispatch(togglePreloader());
+        // dispatch(togglePreloader());
 
         browserHistory.push('/projects');
       } else {
