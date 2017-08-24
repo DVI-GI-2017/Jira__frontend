@@ -7,11 +7,13 @@ import authentication from './User/User.reducers';
 import device from './Mobile/Mobile.reducers';
 import preloader from './PreLoader/Preloader.reducers';
 import projects from "./Projects/Projects.reducers";
+import project from './Project/Project.reducers';
 
 const reducer = combineReducers({
   error,
   preloader,
   projects,
+  project,
   authentication,
   device,
   routing: routerReducer,
