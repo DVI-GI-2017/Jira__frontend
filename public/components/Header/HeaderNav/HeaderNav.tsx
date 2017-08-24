@@ -27,6 +27,8 @@ class HeaderNav extends React.Component<Props, any> {
   public logout(logout: any) {
     if (localStorage.getItem('token')) {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
+
       logout();
     }
 

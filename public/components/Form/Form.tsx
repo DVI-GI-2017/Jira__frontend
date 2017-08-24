@@ -13,6 +13,7 @@ import FormButton from './FormButton/FormButton';
 import validate from '../../service/Validators/index';
 import {send, setError} from '../../actions/Form/Form.actions';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
+import {setCurrentUser} from '../../actions/User/User.actions';
 
 import './Form.scss';
 
@@ -190,8 +191,11 @@ const mapDispatchToProps = (dispatch: any) => {
       const result = await send(url, data);
 
       if (+result.status === 200) {
-        const token: string = (await result.json()).token;
-        localStorage.setItem('token', token);
+        const user: any = (await result.json());
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('user', JSON.stringify(user));
+
+        dispatch(setCurrentUser(JSON.stringify(user)));
 
         browserHistory.push('/projects');
       } else {
