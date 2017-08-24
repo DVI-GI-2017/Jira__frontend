@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import PreLoader from '../../components/PreLoader/PreLoader';
 import Header from '../../components/Header/Header';
-import {Sidebar} from '../../components/Sidebar/Sidebar';
+import Sidebar from '../../components/Sidebar/Sidebar';
 
 import './MainTemplate.scss';
 

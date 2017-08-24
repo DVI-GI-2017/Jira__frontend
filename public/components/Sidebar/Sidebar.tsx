@@ -1,9 +1,15 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
+
 import {Linked} from '../Linked/Linked';
 
 import './Sidebar.scss';
 
-export class Sidebar extends React.Component<any, any> {
+interface Props {
+  isAuthenticated: boolean;
+}
+
+class Sidebar extends React.Component<Props, any> {
   render() {
     return (
       <div className="w3-sidebar w3-light-grey w3-bar-block left__navbar">
@@ -17,3 +23,11 @@ export class Sidebar extends React.Component<any, any> {
     );
   }
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    isAuthenticated: state.authentication.isAuthenticated
+  }
+};
+
+export default connect(mapStateToProps)(Sidebar as any);
