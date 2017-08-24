@@ -1,0 +1,96 @@
+.header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  padding: 10px;
+  background: #25448d;
+  width: 100%;
+  height: 50px;
+
+  &__wrapper__team {
+    height: 100%;
+    float: right;
+    transform: scale(0.5);
+    font-family: 'Keep Calm';
+    color: white;
+    text-align: center;
+    margin-left: -20px;
+  }
+
+  &__wrapper__help {
+    position: absolute;
+    height: 100%;
+    float: left;
+    font-family: 'Keep Calm';
+    color: white;
+    text-align: center;
+    margin-top: -6px;
+  }
+
+  &__help-enter {
+    position: absolute;
+    font-size: 20pt;
+    margin-top: -46px;
+    margin-left: 124px;
+  }
+
+  &__help-selector {
+    position: absolute;
+    font-size: 20pt;
+    margin-top: -46px;
+    margin-left: 36px;
+  }
+
+  .header__help-img {
+    border: 3px solid white;
+    width: 55px;
+    height: 55px;
+    margin-top: -11px;
+    margin-left: -40px;
+
+    &-enter {
+      width: 90px;
+      margin-left: 10px;
+    }
+  }
+
+  &-team {
+    font-size: 32pt;
+    font-family: Roboto;
+    top: -5px;
+    position: relative;
+  }
+
+  &-register {
+    font-size: 8pt;
+    margin-top: -35px;
+    margin-left: 220px;
+  }
+}
+
+.ul__class {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #25448d;
+}
+
+.li__class {
+  float: left;
+  cursor: pointer;
+}
+
+.li__class p {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: Roboto;
+}
+
+.li__class p:hover {
+  background-color: rgba(49, 82, 205, 0.5);
+}

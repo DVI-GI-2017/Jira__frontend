@@ -6,14 +6,15 @@ node_js:
 branches:
   only:
   - master
+  - develop
 
 deploy:
   provider: heroku
   api_key:
     secure: b9ec777b-f764-4ff1-abc5-55ef220ecdef
-  app: snegiri
+  app: jira-dvi-gi
   on:
-    repo: vladpereskokov/snegiri__frontend
+    repo: DVI-GI-2017/Jira__forntend
     branch: master
   skip_cleanup: true
 
@@ -21,4 +22,4 @@ before_script:
   - npm install
 
 script:
-  - npm run webpack
+  - npm run webpack-prod
