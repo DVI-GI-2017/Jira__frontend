@@ -5,7 +5,6 @@
   "main": "bundle.js",
   "scripts": {
     "start": "node server.js",
-    "tests": "./test/test.sh",
     "codeStyle": "tslint -c tslint.json 'src/**/*.ts?(x)'",
     "webpack-prod": "./node_modules/.bin/webpack --config webpack.config.prod.js",
     "webpack-dev": "./node_modules/.bin/webpack --config webpack.config.dev.js"
