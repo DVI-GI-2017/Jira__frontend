@@ -34,6 +34,10 @@ class Projects extends React.Component<Props, any> {
     return (
       <Content>
         <div className='w3-container'>
+          <h1 className='center-align projects__text-title'>{project.title}</h1>
+        </div>
+
+        <div className='w3-container'>
           <h1 className='center-align projects__text-description'>Description</h1>
           <p className='left-align projects__text-description-text projects__top'>
             {project.description}
