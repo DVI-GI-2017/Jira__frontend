@@ -60,7 +60,7 @@ class Projects extends React.Component<Props, any> {
             {project.description}
           </p>
         </div>
-        <div className='add__button-position'>
+        <div className='add__button-position' onClick={() => location.reload()}>
           <Button
             text='Add user'
             isActive={false}
