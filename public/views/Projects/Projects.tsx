@@ -27,7 +27,6 @@ class Projects extends React.Component<Props, any> {
   private firstColumnTasks: Array<any> = [];
   private secondColumnTasks: Array<any> = [];
   private thirdColumnTasks: Array<any> = [];
-  private kostyl: number = 0;
 
   componentWillMount() {
     if (!this.props.isAuthenticated) {
