@@ -10,6 +10,7 @@ import {getTasks, setTasks} from '../../actions/Tasks/Tasks.actions';
 import {setUsers} from '../../actions/Users/Users.actions';
 
 import './Projects.scss';
+import {Button} from '../../components/Button/Button';
 
 interface Props {
   isAuthenticated: boolean;
@@ -58,6 +59,12 @@ class Projects extends React.Component<Props, any> {
           <p className='left-align projects__text-description-text projects__top'>
             {project.description}
           </p>
+        </div>
+        <div className='add__button-position'>
+          <Button
+            text='Add user'
+            isActive={false}
+            pathTo='/add-user'/>
         </div>
         <div className='w3-container projects__top projects__text-tasks'>
           <h1 className='center-align projects__text-description'>Tasks</h1>
