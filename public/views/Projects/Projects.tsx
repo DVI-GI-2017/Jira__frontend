@@ -47,7 +47,7 @@ class Projects extends React.Component<Props, any> {
         <Task
           day='27'
           month='Mar'
-          priority='High'
+          priority={item.labels ? item.labels[0] : 'High'}
           title={item.title}
           description={item.description}
           path={`/tasks${item._id}`}
