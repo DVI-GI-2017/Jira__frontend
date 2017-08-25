@@ -94,19 +94,14 @@ class Form extends React.Component<Props, State> {
       const fields = this._getFields();
 
       if (window.location.pathname.indexOf('signin')) {
-        console.log('sin');
         console.log(this._signInPack(fields));
         this._send('/signin', JSON.stringify(this._signInPack(fields)));
       } else if (window.location.pathname.indexOf('signup')) {
-        console.log('sup');
         console.log(this._signUpPack(fields));
         this._send('/signin', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project')) {
-        console.log('new-project');
         console.log(this._newProjectPack(fields));
         this._send('/new-projects', JSON.stringify(this._newProjectPack(fields)));
-      } else {
-        console.log('here');
       }
     }
   }
