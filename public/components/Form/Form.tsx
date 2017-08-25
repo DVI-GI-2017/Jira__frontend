@@ -122,7 +122,7 @@ class Form extends React.Component<Props, State> {
       if (window.location.pathname.indexOf('signin') !== -1) {
         this._sendForm('/signin', JSON.stringify(this._signInPack(fields)));
       } else if (window.location.pathname.indexOf('signup') !== -1) {
-        this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
+        this._sendForm('/signup', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
         this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
       } else if (window.location.pathname.indexOf('add-user') !== -1) {

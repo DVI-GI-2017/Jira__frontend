@@ -98,7 +98,7 @@ class NewTask extends React.Component<Props, void> {
           : <div className={classes}>
             <Form
               fields={signTopFields}
-              control='Create project'
+              control='Create task'
             />
           </div>
         }
