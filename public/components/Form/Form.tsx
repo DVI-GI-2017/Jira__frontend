@@ -205,7 +205,7 @@ class Form extends React.Component<Props, State> {
   }
 
   _getUserPack(): any {
-    const sel: any = document.getElementById('soflow-color');
+    const sel: any = document.querySelectorAll('.soflow-color')[0];
     const users: any = this.props.users;
 
     console.log(users);

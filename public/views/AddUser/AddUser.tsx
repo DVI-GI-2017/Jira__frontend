@@ -10,10 +10,6 @@ import {getUsers, setUsers} from '../../actions/Users/Users.actions';
 import './AddUser.scss';
 
 const signTopFields = [{
-  title: 'Project',
-  type: 'select',
-  options: []
-}, {
   title: 'User',
   type: 'select',
   options: []
@@ -48,7 +44,7 @@ class AddUser extends React.Component<Props, void> {
   }
 
   private kostyl() {
-    const sel1: any = document.querySelectorAll('.soflow-color')[1];
+    const sel1: any = document.querySelectorAll('.soflow-color')[0];
     sel1.innerHTML = '';
 
     this.props.users.map((item: any, index: number) => {
@@ -56,20 +52,6 @@ class AddUser extends React.Component<Props, void> {
       op.text = item.email;
 
       sel1.add(op);
-
-      return item;
-    });
-
-    console.log(this.props.project);
-
-    const sel: any = document.querySelectorAll('.soflow-color')[0];
-    sel.innerHTML = '';
-
-    this.props.project.map((item: any, index: number) => {
-      const op: any = document.createElement('option');
-      op.text = item.email;
-
-      sel.add(op);
 
       return item;
     });
