@@ -240,8 +240,26 @@ app.post('/api/v1/add-user', (req, res) => {
     res.sendStatus(200);
   });
 
-  console.log(req.body);
   request.write(JSON.stringify(req.body.user));
+  request.end();
+});
+
+app.post('/api/v1/new-task', (req, res) => {
+  const request = http.request(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.body.proj_id}/tasks`,
+    method: 'POST',
+    headers: {
+      'Authorization': req.header('Authorization'),
+      'Content-Type': 'text/plain'
+    }
+  }), (response) => {
+    console.log(response.statusCode);
+    console.log(response.body);
+    res.header('Content-Type', 'application/json');
+    res.sendStatus(200);
+  });
+
+  request.write(JSON.stringify(req.body));
   request.end();
 });
 

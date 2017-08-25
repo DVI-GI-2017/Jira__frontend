@@ -128,6 +128,9 @@ class Form extends React.Component<Props, State> {
       } else if (window.location.pathname.indexOf('add-user') !== -1) {
         console.log(this._getUserPack());
         this._sendProject('/add-user', JSON.stringify((this._getUserPack())));
+      } else if (window.location.pathname.indexOf('new-task') !== -1) {
+        console.log(this._getTaskPack(fields));
+        this._sendProject('/new-task', JSON.stringify((this._getTaskPack(fields))));
       }
     }
   }
@@ -220,6 +223,28 @@ class Form extends React.Component<Props, State> {
     return {
       'user': result,
       'project': this.props.project._id
+    }
+  }
+
+  _getTaskPack(data: any): any {
+    const sel1: any = document.querySelectorAll('.soflow-color')[0];
+    const sel2: any = document.querySelectorAll('.soflow-color')[1];
+
+    console.log(this.props.project);
+    console.log(this.props.users);
+
+    let userId: any;
+    for (let i = 0; i < this.props.users.length; ++i) {
+      if (this.props.users[i].email === sel2.options[sel2.selectedIndex].text) {
+        userId = this.props.users[i]._id;
+      }
+    }
+
+    return {
+      'title': data[0].value,
+      'description': data[1].value,
+      'proj_id': this.props.project._id,
+      'initiator_id': userId
     }
   }
 }
