@@ -141,6 +141,7 @@ const mapDispatchToProps = (dispatch: any) => {
     getProjectsList: async (userId: string) => {
       dispatch(togglePreloader());
 
+      console.log(userId);
       let projects = await getProjects(userId);
       projects = await projects.json();
 
