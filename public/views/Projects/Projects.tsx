@@ -43,7 +43,7 @@ class Projects extends React.Component<Props, any> {
     project = typeof project[0] === 'object' ? project[0] : project;
 
 
-    this.setupTasks(tasks);
+    this.setupTasks(tasks || []);
 
     return (
       <Content>
