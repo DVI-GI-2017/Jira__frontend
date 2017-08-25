@@ -6,3 +6,16 @@
   font-style: italic;
   margin-top: 40px;
 }
+
+.error__text {
+  font-family: Roboto;
+  font-weight: bold;
+
+  &-status {
+    font-size: 20pt;
+  }
+
+  &-text {
+    font-size: 24pt;
+  }
+}
