@@ -28,6 +28,10 @@ const signTopFields = [{
   title: 'Project',
   type: 'select',
   options: []
+}, {
+  title: 'Assignee',
+  type: 'select',
+  options: []
 }];
 
 interface Props {
@@ -76,14 +80,24 @@ class NewTask extends React.Component<Props, void> {
       }]
     };
 
+    signTopFields[3] = {
+      title: 'Assignee',
+      type: 'select',
+      options: users.map((item: any) => {
+        return {
+          title: item.email
+        }
+      })
+    };
+
     return (
       <div className='wrapper__registration'>
-        <Background closed={ true }/>
-        { !isAuthenticated ?
+        <Background closed={true}/>
+        {!isAuthenticated ?
           browserHistory.push('/')
-          : <div className={ classes }>
+          : <div className={classes}>
             <Form
-              fields={ signTopFields }
+              fields={signTopFields}
               control='Create project'
             />
           </div>
