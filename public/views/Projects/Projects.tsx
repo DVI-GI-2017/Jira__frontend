@@ -5,8 +5,9 @@ import {browserHistory} from 'react-router';
 import {Content} from '../../components/Content/Content';
 import {Task} from '../../components/Task/Task';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
-import {getProjects, setCurrentProjects} from '../../actions/Project/Project.actions';
+import {getProjects, getProjectUsers} from '../../actions/Project/Project.actions';
 import {getTasks, setTasks} from '../../actions/Tasks/Tasks.actions';
+import {setUsers} from '../../actions/Users/Users.actions';
 
 import './Projects.scss';
 
@@ -14,6 +15,7 @@ interface Props {
   isAuthenticated: boolean;
   project: any;
   user: any;
+  users: any;
   tasks: Array<any>;
   getProjectsList: (string) => void;
   firstColumnTasks: Array<any>;
@@ -37,8 +39,9 @@ class Projects extends React.Component<Props, any> {
   }
 
   render() {
-    let {project, tasks}: any = this.props;
-    console.log(tasks);
+    let {project, tasks, users}: any = this.props;
+    // console.log(tasks);
+    console.log(users);
 
     project = typeof project[0] === 'object' ? project[0] : project;
 
@@ -140,6 +143,7 @@ const mapStateToProps = (state: any) => {
     isAuthenticated: state.authentication.isAuthenticated,
     user: state.authentication.user,
     project: state.project.project,
+    users: state.users.users,
     tasks: state.tasks.tasks
   }
 };
@@ -154,9 +158,12 @@ const mapDispatchToProps = (dispatch: any) => {
 
         if (+projects.status === 200) {
           projects = await projects.json();
+
           const tasks = await getTasks(projects[0]._id);
+          const users = await getProjectUsers(projects[0]._id);
 
           dispatch(setTasks(await tasks.json()));
+          dispatch(setUsers(await users.json()));
         } else {
           console.log(await projects.text());
         }

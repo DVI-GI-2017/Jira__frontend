@@ -5,9 +5,10 @@ import {connect} from 'react-redux';
 import Background from '../../components/Background/Background';
 import Form from '../../components/Form/Form';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
+import {getProjectUsers} from '../../actions/Project/Project.actions';
+import {setUsers} from '../../actions/Users/Users.actions';
 
 import './NewTask.scss';
-import {getProjectUsers} from '../../actions/Project/Project.actions';
 
 const signTopFields = [{
   title: 'Title',
@@ -26,18 +27,13 @@ const signTopFields = [{
 }, {
   title: 'Project',
   type: 'select',
-  options: [{
-    title: 'akjnasdfnj'
-  }, {
-    title: 'weqrqewr'
-  }, {
-    title: 'xcvkvkzx'
-  }]
+  options: []
 }];
 
 interface Props {
   isAuthenticated: boolean;
   project: any;
+  users: any;
   device?: boolean;
   getUsersList: (string) => void;
 }
@@ -62,14 +58,23 @@ class NewTask extends React.Component<Props, void> {
   }
 
   render() {
-    const {isAuthenticated, device, project} = this.props;
+    const {isAuthenticated, device, project, users} = this.props;
     const classes = device ? 'registration' : 'mobile__registration';
 
     console.log(project);
+    console.log(users);
 
-    if (project) {
+    if (users) {
       this.props.getUsersList(project._id);
     }
+
+    signTopFields[2] = {
+      title: 'Project',
+      type: 'select',
+      options: [{
+        title: project.title
+      }]
+    };
 
     return (
       <div className='wrapper__registration'>
@@ -92,6 +97,7 @@ const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
     project: state.project.project,
+    users: state.users.users,
     device: state.device
   }
 };
@@ -107,9 +113,7 @@ const mapDispatchToProps = (dispatch: any) => {
         if (+users.status === 200) {
           users = await users.json();
 
-          console.log(users);
-
-          // dispatch(setUsers(await users.json()));
+          dispatch(setUsers(await users.json()));
         } else {
           console.log(await users.text());
         }

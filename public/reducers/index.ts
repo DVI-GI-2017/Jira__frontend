@@ -9,6 +9,7 @@ import preloader from './PreLoader/Preloader.reducers';
 import projects from "./Projects/Projects.reducers";
 import project from './Project/Project.reducers';
 import tasks from './Tasks/Tasks.reducers';
+import users from './Users/Users.reducers';
 
 const reducer = combineReducers({
   error,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   projects,
   project,
   tasks,
+  users,
   authentication,
   device,
   routing: routerReducer,
