@@ -81,9 +81,9 @@ class Form extends React.Component<Props, State> {
         });
 
         return (
-          <div>
+          <div key={index}>
             <p>{item.title}</p>
-            <select id="soflow-color" key={index}>
+            <select id="soflow-color">
               {options}
             </select>
           </div>

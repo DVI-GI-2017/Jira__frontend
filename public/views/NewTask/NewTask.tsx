@@ -7,6 +7,7 @@ import Form from '../../components/Form/Form';
 import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './NewTask.scss';
+import {getProjectUsers} from '../../actions/Project/Project.actions';
 
 const signTopFields = [{
   title: 'Title',
@@ -36,7 +37,9 @@ const signTopFields = [{
 
 interface Props {
   isAuthenticated: boolean;
+  project: any;
   device?: boolean;
+  getUsersList: (string) => void;
 }
 
 class NewTask extends React.Component<Props, void> {
@@ -59,8 +62,14 @@ class NewTask extends React.Component<Props, void> {
   }
 
   render() {
-    const {isAuthenticated, device} = this.props;
+    const {isAuthenticated, device, project} = this.props;
     const classes = device ? 'registration' : 'mobile__registration';
+
+    console.log(project);
+
+    if (project) {
+      this.props.getUsersList(project._id);
+    }
 
     return (
       <div className='wrapper__registration'>
@@ -82,29 +91,31 @@ class NewTask extends React.Component<Props, void> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    project: state.project.project,
     device: state.device
   }
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getProjectsList: async (userId: string) => {
-      // dispatch(togglePreloader());
-      //
-      // if (userId) {
-      //   let projects = await getUsersInProject(userId);
-      //
-      //   if (+projects.status === 200) {
-      //     projects = await projects.json();
-      //     const tasks = await getTasks(projects[0]._id);
-      //
-      //     dispatch(setTasks(await tasks.json()));
-      //   } else {
-      //     console.log(await projects.text());
-      //   }
-      // }
-      //
-      // dispatch(togglePreloader());
+    getUsersList: async (projectId: string) => {
+      dispatch(togglePreloader());
+
+      if (projectId) {
+        let users = await getProjectUsers(projectId);
+
+        if (+users.status === 200) {
+          users = await users.json();
+
+          console.log(users);
+
+          // dispatch(setUsers(await users.json()));
+        } else {
+          console.log(await users.text());
+        }
+      }
+
+      dispatch(togglePreloader());
     }
   }
 };

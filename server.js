@@ -173,6 +173,23 @@ app.get('/api/v1/projects/:id/tasks', (req, res) => {
   });
 });
 
+app.get('/api/v1/projects/:id/users', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.params.id}/users`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
 app.use('*', express.static('public'));
 
 app.listen(process.env.PORT || 3200, () => {
