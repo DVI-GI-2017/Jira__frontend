@@ -24,7 +24,10 @@ import './static/css/fonts.scss';
 import './static/css/main.scss';
 
 if (localStorage.token) {
-  store.dispatch(setCurrentUser(localStorage.token));
+  store.dispatch(setCurrentUser({
+    token: localStorage.token,
+    user: JSON.parse(localStorage.user),
+  }));
 }
 
 store.dispatch(setDevice(new Device().isDesktop()));

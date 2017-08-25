@@ -13,8 +13,9 @@ import './Projects.scss';
 interface Props {
   isAuthenticated: boolean;
   project: any;
+  user: any;
   tasks: Array<any>;
-  getProjectsList: () => void;
+  getProjectsList: (string) => void;
   firstColumnTasks: Array<any>;
   secondColumnTasks: any;
   thirdColumnTasks: any;
@@ -32,7 +33,9 @@ class Projects extends React.Component<Props, any> {
       return;
     }
 
-    this.props.getProjectsList();
+    console.log(this.props.user);
+    console.log(this.props.user._id);
+    this.props.getProjectsList(this.props.user._id);
   }
 
   render() {
@@ -114,14 +117,6 @@ class Projects extends React.Component<Props, any> {
       switch (index % 3) {
         case 0:
           this.firstColumnTasks.push(
-            <Task
-              day='27'
-              month='Mar'
-              priority='High'
-              title={item.title}
-              description={item.description}
-              path={`/tasks${item._id}`}
-            />
           )
       }
     });
@@ -137,6 +132,7 @@ class Projects extends React.Component<Props, any> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    user: state.authentication.user,
     project: state.project.project,
     tasks: state.tasks.tasks
   }
@@ -144,12 +140,15 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getProjectsList: async () => {
+    getProjectsList: async (userId: string) => {
       dispatch(togglePreloader());
 
-      const [projects, tasks] = await Promise.all([getProjects(), getTasks()]);
+      let projects = await getProjects(userId);
+      projects = await projects.json();
 
-      dispatch(setCurrentProjects(await projects.json()));
+      const tasks = await getTasks(projects[0]._id);
+
+      dispatch(setCurrentProjects(projects));
       dispatch(setTasks(await tasks.json()));
       dispatch(togglePreloader());
     }

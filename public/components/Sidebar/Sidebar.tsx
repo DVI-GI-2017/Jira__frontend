@@ -50,11 +50,11 @@ const mapDispatchToProps = (dispatch: any) => {
     getProjectsList: async () => {
       dispatch(togglePreloader());
 
-      const result = await getProjects();
-      const project = await result.json();
-
-      dispatch(setProjects(project));
-      dispatch(setCurrentProjects(project[0]));
+      // const result = await getProjects();
+      // const project = await result.json();
+      //
+      // dispatch(setProjects(project));
+      // dispatch(setCurrentProjects(project[0]));
       dispatch(togglePreloader());
     },
     setProject: async (project: any) => {
