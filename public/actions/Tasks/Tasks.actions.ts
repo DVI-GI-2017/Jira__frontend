@@ -16,7 +16,7 @@ export function setCurrentTasks(task: any): any {
 }
 
 export function getTasks(id: string): any {
-  return transport.get(`/project/${id}/tasks`);
+  return transport.get(`/projects/${id}/tasks`);
 }
 
 export function getTask(filter: string): any {

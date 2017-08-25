@@ -73,6 +73,7 @@ app.get('/api/v1/projects', (req, res) => {
     }
   }), (response) => {
     response.on('data', data => {
+      console.log('here');
       res.header('Content-Type', 'application/json');
       res.status(200).send(data);
     });
@@ -135,6 +136,40 @@ app.post('/api/v1/new-project', (req, res) => {
 
   request.write(JSON.stringify(req.body));
   request.end();
+});
+
+app.get('/api/v1/users/:id/projects', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/users/${req.params.id}/projects`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
+app.get('/api/v1/projects/:id/tasks', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.params.id}/tasks`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
 });
 
 app.use('*', express.static('public'));
