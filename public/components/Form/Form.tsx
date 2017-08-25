@@ -102,7 +102,7 @@ class Form extends React.Component<Props, State> {
         this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
         console.log(this._newProjectPack(fields));
-        this._sendProject('/new-project', JSON.stringify(this._newProjectPack(fields)));
+        this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
       }
     }
   }
@@ -174,7 +174,8 @@ class Form extends React.Component<Props, State> {
   _newProjectPack(data: any): any {
     return {
       'title': data[0].value,
-      'description': data[1].value
+      'description': data[1].value,
+      'user': JSON.parse(localStorage.getItem('user'))._id
     }
   }
 }
@@ -227,7 +228,7 @@ const mapDispatchToProps = (dispatch: any) => {
       const result = await send(url, data);
 
       if (+result.status === 200) {
-        console.log(await result.json());
+        // console.log(await result.json());
         browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));

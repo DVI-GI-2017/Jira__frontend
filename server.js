@@ -103,12 +103,33 @@ app.post('/api/v1/new-project', (req, res) => {
     path: '/api/v1/projects',
     method: 'POST',
     headers: {
-      'Authorization': req.header('Authorization')
+      'Authorization': req.header('Authorization'),
+      'Content-Type': 'text/plain'
     }
   }), (response) => {
     response.on('data', data => {
-      res.header('Content-Type', 'application/json');
-      res.status(response.statusCode).send(data);
+      const jsData = JSON.parse(data.toString());
+
+      if (jsData._id) {
+        const requestAddUser = http.request(Object.assign(baseOptionsBackend, {
+          path: `/api/v1/projects/${jsData._id}/users`,
+          method: 'POST',
+          headers: {
+            'Authorization': req.header('Authorization')
+          }
+        }), (response) => {
+          response.on('data', data => {
+            res.header('Content-Type', 'application/json');
+            res.status(response.statusCode).send(data);
+          });
+        });
+
+        requestAddUser.write(JSON.stringify(req.body.user));
+        requestAddUser.end();
+      } else {
+        res.header('Content-Type', 'application/json');
+        res.status(response.statusCode).send(data);
+      }
     });
   });
 
