@@ -25,6 +25,8 @@ interface Props {
   control: string;
   error?: string;
   submit?: any;
+  users?: any;
+  project?: any;
   type?: string;
   send?: (url: string, data: any) => any;
   sendProject?: (url: string, data: any) => any;
@@ -84,7 +86,7 @@ class Form extends React.Component<Props, State> {
         return (
           <div key={index}>
             <p>{item.title}</p>
-            <select id="soflow-color">
+            <select className="soflow-color">
               {options}
             </select>
           </div>
@@ -123,6 +125,9 @@ class Form extends React.Component<Props, State> {
         this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
         this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
+      } else if (window.location.pathname.indexOf('add-user') !== -1) {
+        console.log(this._getUserPack());
+        this._sendProject('/add-user', JSON.stringify((this._getUserPack())));
       }
     }
   }
@@ -198,6 +203,25 @@ class Form extends React.Component<Props, State> {
       'user': JSON.parse(localStorage.getItem('user'))._id
     }
   }
+
+  _getUserPack(): any {
+    const sel: any = document.getElementById('soflow-color');
+    const users: any = this.props.users;
+
+    console.log(users);
+    console.log(this.props.project);
+    let result: string = '';
+    for (let i = 0; i < users.length; ++i) {
+      if (users[i].email === sel.options[sel.selectedIndex].text) {
+        result += users[i]._id
+      }
+    }
+
+    return {
+      'user': result,
+      'project': this.props.project._id
+    }
+  }
 }
 
 const ReduxForm: any = reduxForm({
@@ -209,7 +233,9 @@ const ReduxForm: any = reduxForm({
 
 const mapStateToProps = (state: any) => {
   return {
-    errors: state.error
+    errors: state.error,
+    users: state.users.users,
+    project: state.project.project
   }
 };
 

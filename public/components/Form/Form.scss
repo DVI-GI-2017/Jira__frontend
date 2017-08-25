@@ -265,7 +265,7 @@
 }
 
 
-select#soflow, select#soflow-color {
+select.soflow, select.soflow-color {
   -webkit-appearance: button;
   -webkit-border-radius: 2px;
   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
@@ -286,7 +286,7 @@ select#soflow, select#soflow-color {
   width: 300px;
 }
 
-select#soflow-color {
+select.soflow-color {
   color: #fff;
   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#1c3568, #1c3568 40%, #1c3568);
   background-color: #1c3568;

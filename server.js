@@ -208,6 +208,43 @@ app.get('/api/v1/users', (req, res) => {
   });
 });
 
+app.get('/api/v1/projects', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
+app.post('/api/v1/add-user', (req, res) => {
+  const request = http.request(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.body.project}/users`,
+    method: 'POST',
+    headers: {
+      'Authorization': req.header('Authorization'),
+      'Content-Type': 'text/plain'
+    }
+  }), (response) => {
+    console.log(response.statusCode);
+    console.log(response.body);
+    res.header('Content-Type', 'application/json');
+    res.sendStatus(200);
+  });
+
+  console.log(req.body);
+  request.write(JSON.stringify(req.body.user));
+  request.end();
+});
+
 app.use('*', express.static('public'));
 
 app.listen(process.env.PORT || 3200, () => {

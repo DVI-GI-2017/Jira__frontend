@@ -10,6 +10,10 @@ import {getUsers, setUsers} from '../../actions/Users/Users.actions';
 import './AddUser.scss';
 
 const signTopFields = [{
+  title: 'Project',
+  type: 'select',
+  options: []
+}, {
   title: 'User',
   type: 'select',
   options: []
@@ -44,16 +48,35 @@ class AddUser extends React.Component<Props, void> {
   }
 
   private kostyl() {
-    const sel: any = document.getElementById('soflow-color');
+    const sel1: any = document.querySelectorAll('.soflow-color')[1];
+    sel1.innerHTML = '';
 
     this.props.users.map((item: any, index: number) => {
+      const op: any = document.createElement('option');
+      op.text = item.email;
+
+      sel1.add(op);
+
+      return item;
+    });
+
+    console.log(this.props.project);
+
+    const sel: any = document.querySelectorAll('.soflow-color')[0];
+    sel.innerHTML = '';
+
+    this.props.project.map((item: any, index: number) => {
       const op: any = document.createElement('option');
       op.text = item.email;
 
       sel.add(op);
 
       return item;
-    })
+    });
+  }
+
+  componentWillMount() {
+    this.props.getUsersList();
   }
 
   componentDidMount() {
@@ -61,25 +84,8 @@ class AddUser extends React.Component<Props, void> {
   }
 
   render() {
-    const {isAuthenticated, device, users} = this.props;
+    const {isAuthenticated, device} = this.props;
     const classes = device ? 'registration' : 'mobile__registration';
-
-    console.log(users);
-    if (users.length === 0) {
-      this.props.getUsersList();
-    }
-
-    signTopFields[0] = {
-      title: 'Assignee',
-      type: 'select',
-      options: users.map((item: any) => {
-        return {
-          title: item.email
-        }
-      })
-    };
-
-    console.log(signTopFields);
 
     return (
       <div className='wrapper__registration'>
@@ -114,7 +120,6 @@ const mapDispatchToProps = (dispatch: any) => {
 
       let users = await getUsers();
       const top = await users.json();
-      console.log(top);
 
       dispatch(setUsers(top));
       dispatch(togglePreloader());
