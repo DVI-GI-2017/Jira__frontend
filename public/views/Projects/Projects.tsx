@@ -90,7 +90,7 @@ class Projects extends React.Component<Props, any> {
                 month='Mar'
                 priority={item.labels ? item.labels[0] : 'High'}
                 title={item.title}
-                description={item.description}
+                description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
                 path={`/tasks${item._id}`}
                 initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
                 key={index}
@@ -104,7 +104,7 @@ class Projects extends React.Component<Props, any> {
               month='Mar'
               priority={item.labels ? item.labels[0] : 'High'}
               title={item.title}
-              description={item.description}
+              description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
               path={`/tasks${item._id}`}
               initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
               key={index}
@@ -118,7 +118,7 @@ class Projects extends React.Component<Props, any> {
               month='Mar'
               priority={item.labels ? item.labels[0] : 'High'}
               title={item.title}
-              description={item.description}
+              description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
               path={`/tasks${item._id}`}
               initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
               key={index}
