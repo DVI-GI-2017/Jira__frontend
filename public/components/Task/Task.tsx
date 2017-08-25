@@ -12,7 +12,6 @@ interface Props {
   month?: string;
   priority: string;
   title: string;
-  initiator: string;
   description?: string;
   path: string
 }
