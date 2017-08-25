@@ -6,6 +6,8 @@ import isPassword from './isPassword/isPassword';
 const validate = (values: any) => {
   const errors: any = {};
 
+  checkTitile(values.title, errors);
+
   checkLogin(values.login, errors);
 
   checkEmail(values.email, errors);
@@ -22,6 +24,16 @@ const validate = (values: any) => {
 
   return errors;
 };
+
+function checkTitile(title: string, errors: any) {
+  if (isFill(title)) {
+    errors.title = 'Required';
+  } else if (title.length < 2) {
+    errors.login = 'So short title';
+  } else if (title.length > 20) {
+    errors.login = 'So long title';
+  }
+}
 
 function checkLogin(login: string, errors: any) {
   if (isFill(login)) {

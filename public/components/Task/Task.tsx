@@ -12,13 +12,14 @@ interface Props {
   month?: string;
   priority: string;
   title: string;
+  initiator: string;
   description?: string;
   path: string
 }
 
 export class Task extends React.Component<Props, any> {
   render() {
-    const {day, month, priority, title, description, path}: any = this.props;
+    const {day, month, priority, title, initiator, description, path}: any = this.props;
     const classPriority: string = `category ${this.findClassToPriority(priority)}`;
 
     return (
@@ -36,7 +37,7 @@ export class Task extends React.Component<Props, any> {
             <h1 className='title'>{title}</h1>
             <p className='description'>{description}</p>
             <p className='initiator__block'><span className='sub_title initiator__title'>Initiator:</span>
-              <span className='initiator__people'>Blabla</span></p>
+              <span className='initiator__people'>{initiator}</span></p>
             <div className='post-meta'>
               <Linked pathTo={path}><span className="task__more">More</span></Linked>
             </div>

@@ -10,7 +10,7 @@ export default function authentication(state: any = initialState, action: any = 
   switch (action.type) {
     case SET_CURRENT_USER:
       return {
-        isAuthenticated: isEmpty(action.user),
+        isAuthenticated: !!action.user,
         user: action.user
       };
     default:

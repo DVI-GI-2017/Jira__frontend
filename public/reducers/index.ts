@@ -8,12 +8,14 @@ import device from './Mobile/Mobile.reducers';
 import preloader from './PreLoader/Preloader.reducers';
 import projects from "./Projects/Projects.reducers";
 import project from './Project/Project.reducers';
+import tasks from './Tasks/Tasks.reducers';
 
 const reducer = combineReducers({
   error,
   preloader,
   projects,
   project,
+  tasks,
   authentication,
   device,
   routing: routerReducer,

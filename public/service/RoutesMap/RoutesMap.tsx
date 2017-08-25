@@ -1,14 +1,13 @@
 const HOME: string = '/';
 const SIGNIN: string = '/signin';
 const SIGNUP: string = '/signup';
-const SCOREBOARD: string = '/scoreboard';
-const ABOUT: string = '/about';
 const PROJECTS: string = '/projects';
+const NEW_PROJECT: string = '/new-project';
 
 export {
   HOME,
   SIGNIN,
   SIGNUP,
   PROJECTS,
-  ABOUT,
+  NEW_PROJECT
 }

@@ -26,6 +26,7 @@ interface Props {
   submit?: any;
   type?: string;
   send?: (url: string, data: any) => any;
+  sendProject?: (url: string, data: any) => any;
   handleSubmit?: any;
   name?: string;
   setError?: (error: string) => void;
@@ -92,21 +93,23 @@ class Form extends React.Component<Props, State> {
   submit() {
     if (this._isValid()) {
       const fields = this._getFields();
-      const isSignIn = fields.length === 2;
 
-      let data: any = isSignIn ?
-        this._signInPack(fields) :
-        this._signUpPack(fields);
-
-      data = JSON.stringify(data);
-
-      isSignIn ? this._send('/signin', data)
-        : this._send('/signup', data);
+      if (window.location.pathname.indexOf('signin') !== -1) {
+        this._sendForm('/signin', JSON.stringify(this._signInPack(fields)));
+      } else if (window.location.pathname.indexOf('signup') !== -1) {
+        this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
+      } else if (window.location.pathname.indexOf('new-project') !== -1) {
+        this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
+      }
     }
   }
 
-  _send(url: string, data: any): any {
+  private _sendForm(url: string, data: any): any {
     return this.props.send(url, data);
+  }
+
+  private _sendProject(url: string, data: any): any {
+    return this.props.sendProject(url, data);
   }
 
   _isValid() {
@@ -150,19 +153,27 @@ class Form extends React.Component<Props, State> {
     return this._form.querySelectorAll('input');
   }
 
-  _signInPack(data: any) {
+  _signInPack(data: any): any {
     return {
       'email': data[0].value,
       'password': data[1].value
     };
   }
 
-  _signUpPack(data: any) {
+  _signUpPack(data: any): any {
     return {
       'name': data[0].value,
       'email': data[1].value,
       'password': data[2].value
     };
+  }
+
+  _newProjectPack(data: any): any {
+    return {
+      'title': data[0].value,
+      'description': data[1].value,
+      'user': JSON.parse(localStorage.getItem('user'))._id
+    }
   }
 }
 
@@ -195,8 +206,26 @@ const mapDispatchToProps = (dispatch: any) => {
         localStorage.setItem('token', user.token);
         localStorage.setItem('user', JSON.stringify(user));
 
-        dispatch(setCurrentUser(JSON.stringify(user)));
+        dispatch(setCurrentUser({
+          token: user.token,
+          data: JSON.stringify(user)
+        }));
 
+        browserHistory.push('/projects');
+      } else {
+        dispatch(setError(await result.json()));
+      }
+
+      dispatch(togglePreloader());
+    },
+
+    sendProject: async (url: string, data: any) => {
+      dispatch(togglePreloader());
+
+      const result = await send(url, data);
+
+      if (+result.status === 200) {
+        // console.log(await result.json());
         browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));
