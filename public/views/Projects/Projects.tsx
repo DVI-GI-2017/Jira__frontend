@@ -146,6 +146,7 @@ const mapDispatchToProps = (dispatch: any) => {
       projects = await projects.json();
 
       const tasks = await getTasks(projects[0]._id);
+      console.log(await tasks.json());
 
       dispatch(setCurrentProjects(projects));
       dispatch(setTasks(await tasks.json()));

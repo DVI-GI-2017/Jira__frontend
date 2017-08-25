@@ -95,13 +95,10 @@ class Form extends React.Component<Props, State> {
       const fields = this._getFields();
 
       if (window.location.pathname.indexOf('signin') !== -1) {
-        console.log(this._signInPack(fields));
         this._sendForm('/signin', JSON.stringify(this._signInPack(fields)));
       } else if (window.location.pathname.indexOf('signup') !== -1) {
-        console.log(this._signUpPack(fields));
         this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
-        console.log(this._newProjectPack(fields));
         this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
       }
     }
