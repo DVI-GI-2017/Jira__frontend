@@ -74,11 +74,15 @@ class Form extends React.Component<Props, State> {
 
     const selector: Array<any> = fields.map((item: any, index: number) => {
       if (item.type === 'select') {
+        const options: Array<any> = item.options.map((option: any, index: number) => {
+          return (
+            <option key={index}>{option.title}</option>
+          );
+        });
+
         return (
-          <select id="soflow-color">
-            <option>Select an Option</option>
-            <option>Option 1</option>
-            <option>Option 2</option>
+          <select id="soflow-color" key={index}>
+            {options}
           </select>
         );
       }

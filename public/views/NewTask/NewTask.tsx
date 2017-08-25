@@ -7,7 +7,7 @@ import Form from '../../components/Form/Form';
 
 import './NewTask.scss';
 
-const signInFields = [{
+const signTopFields = [{
   title: 'Title',
   name: 'title',
   type: 'text',
@@ -21,6 +21,15 @@ const signInFields = [{
   description: 'Description',
   placeholder: 'Top task ever!',
   error: ''
+}, {
+  type: 'select',
+  options: [{
+    title: 'akjnasdfnj'
+  }, {
+    title: 'weqrqewr'
+  }, {
+    title: 'xcvkvkzx'
+  }]
 }];
 
 interface Props {
@@ -28,7 +37,7 @@ interface Props {
   device?: boolean;
 }
 
-class NewProject extends React.Component<Props, void> {
+class NewTask extends React.Component<Props, void> {
   constructor() {
     super();
 
@@ -58,7 +67,7 @@ class NewProject extends React.Component<Props, void> {
           browserHistory.push('/')
           : <div className={ classes }>
             <Form
-              fields={ signInFields }
+              fields={ signTopFields }
               control='Create project'
             />
           </div>
@@ -75,4 +84,4 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(NewProject);
+export default connect<{}, {}, Props>(mapStateToProps)(NewTask);

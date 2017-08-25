@@ -15,13 +15,6 @@ const signInFields = [{
   placeholder: 'ivanpetrov@mail.ru',
   error: ''
 }, {
-  title: 'Email',
-  name: 'email',
-  type: 'select',
-  description: 'Email is email',
-  placeholder: 'ivanpetrov@mail.ru',
-  error: ''
-}, {
   title: 'Password',
   name: 'password1',
   type: 'password',

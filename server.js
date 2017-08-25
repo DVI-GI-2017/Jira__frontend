@@ -8,6 +8,7 @@ app.use('/signup', express.static('public'));
 app.use('/signin', express.static('public'));
 app.use('/projects', express.static('public'));
 app.use('/new-project', express.static('public'));
+app.use('/new-task', express.static('public'));
 
 app.use(parser.json());
 
