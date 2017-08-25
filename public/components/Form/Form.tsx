@@ -26,6 +26,7 @@ interface Props {
   submit?: any;
   type?: string;
   send?: (url: string, data: any) => any;
+  sendProject?: (url: string, data: any) => any;
   handleSubmit?: any;
   name?: string;
   setError?: (error: string) => void;
@@ -93,21 +94,25 @@ class Form extends React.Component<Props, State> {
     if (this._isValid()) {
       const fields = this._getFields();
 
-      if (window.location.pathname.indexOf('signin')) {
+      if (window.location.pathname.indexOf('signin') !== -1) {
         console.log(this._signInPack(fields));
-        this._send('/signin', JSON.stringify(this._signInPack(fields)));
-      } else if (window.location.pathname.indexOf('signup')) {
+        this._sendForm('/signin', JSON.stringify(this._signInPack(fields)));
+      } else if (window.location.pathname.indexOf('signup') !== -1) {
         console.log(this._signUpPack(fields));
-        this._send('/signin', JSON.stringify(this._signUpPack(fields)));
-      } else if (window.location.pathname.indexOf('new-project')) {
+        this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
+      } else if (window.location.pathname.indexOf('new-project') !== -1) {
         console.log(this._newProjectPack(fields));
-        this._send('/new-projects', JSON.stringify(this._newProjectPack(fields)));
+        this._sendProject('/new-project', JSON.stringify(this._newProjectPack(fields)));
       }
     }
   }
 
-  _send(url: string, data: any): any {
+  private _sendForm(url: string, data: any): any {
     return this.props.send(url, data);
+  }
+
+  private _sendProject(url: string, data: any): any {
+    return this.props.sendProject(url, data);
   }
 
   _isValid() {
@@ -208,6 +213,21 @@ const mapDispatchToProps = (dispatch: any) => {
           data: JSON.stringify(user)
         }));
 
+        browserHistory.push('/projects');
+      } else {
+        dispatch(setError(await result.json()));
+      }
+
+      dispatch(togglePreloader());
+    },
+
+    sendProject: async (url: string, data: any) => {
+      dispatch(togglePreloader());
+
+      const result = await send(url, data);
+
+      if (+result.status === 200) {
+        console.log(await result.json());
         browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));

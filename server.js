@@ -98,6 +98,24 @@ app.get('/api/v1/tasks', (req, res) => {
   });
 });
 
+app.post('/api/v1/new-project', (req, res) => {
+  const request = http.request(Object.assign(baseOptionsBackend, {
+    path: '/api/v1/projects',
+    method: 'POST',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(response.statusCode).send(data);
+    });
+  });
+
+  request.write(JSON.stringify(req.body));
+  request.end();
+});
+
 app.use('*', express.static('public'));
 
 app.listen(process.env.PORT || 3200, () => {
