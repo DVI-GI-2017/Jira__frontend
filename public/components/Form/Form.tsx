@@ -227,7 +227,6 @@ class Form extends React.Component<Props, State> {
   }
 
   _getTaskPack(data: any): any {
-    const sel1: any = document.querySelectorAll('.soflow-color')[0];
     const sel2: any = document.querySelectorAll('.soflow-color')[1];
 
     console.log(this.props.project);

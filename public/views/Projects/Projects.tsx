@@ -40,9 +40,7 @@ class Projects extends React.Component<Props, any> {
   }
 
   render() {
-    let {project, tasks, users}: any = this.props;
-    // console.log(tasks);
-    console.log(users);
+    let {project, tasks}: any = this.props;
 
     project = typeof project[0] === 'object' ? project[0] : project;
 
@@ -102,7 +100,6 @@ class Projects extends React.Component<Props, any> {
               title={item.title}
               description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
               path={`/tasks${item._id}`}
-              initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
               key={index}
             />
           ));
@@ -116,7 +113,6 @@ class Projects extends React.Component<Props, any> {
               title={item.title}
               description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
               path={`/tasks${item._id}`}
-              initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
               key={index}
             />
           ));
@@ -130,7 +126,6 @@ class Projects extends React.Component<Props, any> {
               title={item.title}
               description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
               path={`/tasks${item._id}`}
-              initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
               key={index}
             />
           ));

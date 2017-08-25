@@ -36,8 +36,6 @@ export class Task extends React.Component<Props, any> {
             <div className={classPriority}>{priority}</div>
             <h1 className='title'>{title}</h1>
             <p className='description'>{description}</p>
-            <p className='initiator__block'><span className='sub_title initiator__title'>Initiator:</span>
-              <span className='initiator__people'>{initiator}</span></p>
           </div>
         </div>
       </div>
