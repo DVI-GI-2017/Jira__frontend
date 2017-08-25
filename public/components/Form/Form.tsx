@@ -55,19 +55,33 @@ class Form extends React.Component<Props, State> {
     const {handleSubmit, fields, errors, control}: any = this.props;
 
     const content: Array<any> = fields.map((item: any, index: number) => {
-      return (
-        <div key={ index }>
-          <Field
-            name={ item.name }
-            names={ item.name }
-            type={ item.type }
-            component={ this._renderField }
-            label={ item.title }
-            description={ item.description }
-            placeholder={ item.placeholder }
-          />
-        </div>
-      )
+      if (item.type !== 'select') {
+        return (
+          <div key={index}>
+            <Field
+              name={item.name}
+              names={item.name}
+              type={item.type}
+              component={this._renderField}
+              label={item.title}
+              description={item.description}
+              placeholder={item.placeholder}
+            />
+          </div>
+        )
+      }
+    });
+
+    const selector: Array<any> = fields.map((item: any, index: number) => {
+      if (item.type === 'select') {
+        return (
+          <select id="soflow-color">
+            <option>Select an Option</option>
+            <option>Option 1</option>
+            <option>Option 2</option>
+          </select>
+        );
+      }
     });
 
     return (
@@ -83,11 +97,7 @@ class Form extends React.Component<Props, State> {
             onSubmit={handleSubmit}>
             <FormError text={ errors }/>
             <FormContent content={ content }/>
-            <select id="soflow-color">
-              <option>Select an Option</option>
-              <option>Option 1</option>
-              <option>Option 2</option>
-            </select>
+            {selector}
             <FormButton text={ control } click={ this.submit.bind(this) }/>
           </form>
         </div>
