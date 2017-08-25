@@ -1,6 +1,6 @@
 let express = require('express');
 let parser = require('body-parser');
-let http = require('http');
+let http = process.env.PORT ? require('https') : require('http');
 let app = express();
 
 app.use('/', express.static('public'));
@@ -12,10 +12,13 @@ app.use('*', express.static('public'));
 
 app.use(parser.json());
 
-const backendURI = 'http://localhost:3000/api/v1';
-const backendURL = 'localhost';
+const backendURI = process.env.PORT ? 'https://jira-clone.herokuapp.com/api/v1' : 'http://localhost:3000/api/v1';
+const backendURL = process.env.PORT ? 'jira-clone.herokuapp.com' : 'localhost';
 
-const baseOptionsBackend = {
+const baseOptionsBackend = process.env.PORT ? {
+  host: backendURL,
+  port: 443
+} : {
   host: backendURL,
   port: 3000
 };
