@@ -93,18 +93,20 @@ class Form extends React.Component<Props, State> {
     if (this._isValid()) {
       const fields = this._getFields();
 
-      switch (window.location.pathname) {
-        case '/signin':
-          this._send('/signin', this._signInPack(fields));
-          break;
-        case '/signup':
-          this._send('/signin', this._signUpPack(fields));
-          break;
-        case '/new-project':
-          this._send('/new-projects', this._newProjectPack(fields));
-          break;
-        default:
-          break;
+      if (window.location.pathname.indexOf('signin')) {
+        console.log('sin');
+        console.log(this._signInPack(fields));
+        this._send('/signin', JSON.stringify(this._signInPack(fields)));
+      } else if (window.location.pathname.indexOf('signup')) {
+        console.log('sup');
+        console.log(this._signUpPack(fields));
+        this._send('/signin', JSON.stringify(this._signUpPack(fields)));
+      } else if (window.location.pathname.indexOf('new-project')) {
+        console.log('new-project');
+        console.log(this._newProjectPack(fields));
+        this._send('/new-projects', JSON.stringify(this._newProjectPack(fields)));
+      } else {
+        console.log('here');
       }
     }
   }
