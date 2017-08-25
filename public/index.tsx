@@ -10,7 +10,6 @@ import MainTemplate from './templates/MainTemplate/MainTemplate';
 import Home from './views/Home/Home';
 import SignIn from './views/SignIn/SignIn';
 import SignUp from './views/SignUp/SignUp';
-import About from './views/About/About';
 import {Error} from './views/Error/Error';
 import Projects from './views/Projects/Projects';
 
@@ -41,7 +40,6 @@ const App = () => (
         <IndexRoute component={ Home }/>
         <Route path={ RoutesMap.SIGNIN } component={ SignIn as any }/>
         <Route path={ RoutesMap.SIGNUP } component={ SignUp as any }/>
-        <Route path={ RoutesMap.ABOUT } component={ About as any }/>
         <Route path={ RoutesMap.PROJECTS } component={ Projects as any }/>
         <Route path='*' component={ Error as any }/>
       </Route>
