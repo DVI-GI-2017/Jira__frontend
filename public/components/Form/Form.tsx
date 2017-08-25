@@ -81,9 +81,12 @@ class Form extends React.Component<Props, State> {
         });
 
         return (
-          <select id="soflow-color" key={index}>
-            {options}
-          </select>
+          <div>
+            <p>{item.title}</p>
+            <select id="soflow-color" key={index}>
+              {options}
+            </select>
+          </div>
         );
       }
     });
@@ -91,18 +94,18 @@ class Form extends React.Component<Props, State> {
     return (
       <div className='form__wrapper-elements'>
         <div className='wrapper__form-center'>
-          <FormHeader />
+          <FormHeader/>
           <form
             className='form'
             name='form'
-            ref={ (form: any) => {
+            ref={(form: any) => {
               this._form = form
             }}
             onSubmit={handleSubmit}>
-            <FormError text={ errors }/>
-            <FormContent content={ content }/>
+            <FormError text={errors}/>
+            <FormContent content={content}/>
             {selector}
-            <FormButton text={ control } click={ this.submit.bind(this) }/>
+            <FormButton text={control} click={this.submit.bind(this)}/>
           </form>
         </div>
       </div>
@@ -151,18 +154,18 @@ class Form extends React.Component<Props, State> {
                }: any) {
     errors[names] = !!error;
     return (
-      <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
-        <FormLabel title={ label }/>
+      <li className={(touched && error && 'error ') || (touched && !error && 'ok')}>
+        <FormLabel title={label}/>
         <FormInput
-          name={ names }
-          type={ type }
-          input={ ...input }
-          placeholder={ placeholder }
+          name={names}
+          type={type}
+          input={...input}
+          placeholder={placeholder}
         />
         <FormDescription
-          touched={ touched }
-          description={ description }
-          error={ error }
+          touched={touched}
+          description={description}
+          error={error}
         />
       </li>
     );

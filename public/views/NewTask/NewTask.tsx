@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import Background from '../../components/Background/Background';
 import Form from '../../components/Form/Form';
+import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 
 import './NewTask.scss';
 
@@ -22,6 +23,7 @@ const signTopFields = [{
   placeholder: 'Top task ever!',
   error: ''
 }, {
+  title: 'Project',
   type: 'select',
   options: [{
     title: 'akjnasdfnj'
@@ -84,4 +86,27 @@ const mapStateToProps = (state: any) => {
   }
 };
 
-export default connect<{}, {}, Props>(mapStateToProps)(NewTask);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getProjectsList: async (userId: string) => {
+      // dispatch(togglePreloader());
+      //
+      // if (userId) {
+      //   let projects = await getUsersInProject(userId);
+      //
+      //   if (+projects.status === 200) {
+      //     projects = await projects.json();
+      //     const tasks = await getTasks(projects[0]._id);
+      //
+      //     dispatch(setTasks(await tasks.json()));
+      //   } else {
+      //     console.log(await projects.text());
+      //   }
+      // }
+      //
+      // dispatch(togglePreloader());
+    }
+  }
+};
+
+export default connect<{}, {}, Props>(mapStateToProps, mapDispatchToProps)(NewTask);
