@@ -83,6 +83,11 @@ class Form extends React.Component<Props, State> {
             onSubmit={handleSubmit}>
             <FormError text={ errors }/>
             <FormContent content={ content }/>
+            <select id="soflow-color">
+              <option>Select an Option</option>
+              <option>Option 1</option>
+              <option>Option 2</option>
+            </select>
             <FormButton text={ control } click={ this.submit.bind(this) }/>
           </form>
         </div>
