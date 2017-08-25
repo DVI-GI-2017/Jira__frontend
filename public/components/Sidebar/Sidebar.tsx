@@ -8,15 +8,16 @@ import './Sidebar.scss';
 
 interface Props {
   isAuthenticated: boolean;
+  user: any;
   projects: Array<any>;
   project: any;
-  getProjectsList: () => void;
+  getProjectsList: (string) => void;
   setProject: (any) => void;
 }
 
 class Sidebar extends React.Component<Props, any> {
   componentWillMount() {
-    this.props.getProjectsList();
+    this.props.getProjectsList(this.props.user.data._id);
   }
 
   render() {
@@ -41,20 +42,21 @@ class Sidebar extends React.Component<Props, any> {
 const mapStateToProps = (state: any) => {
   return {
     isAuthenticated: state.authentication.isAuthenticated,
+    user: state.authentication.user,
     projects: state.projects
   }
 };
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getProjectsList: async () => {
+    getProjectsList: async (userId: string) => {
       dispatch(togglePreloader());
 
-      // const result = await getProjects();
-      // const project = await result.json();
-      //
-      // dispatch(setProjects(project));
-      // dispatch(setCurrentProjects(project[0]));
+      const result = await getProjects(userId);
+      const project = await result.json();
+
+      dispatch(setProjects(project));
+      dispatch(setCurrentProjects(project[0]));
       dispatch(togglePreloader());
     },
     setProject: async (project: any) => {
