@@ -8,18 +8,18 @@ import Form from '../../components/Form/Form';
 import './NewProject.scss';
 
 const signInFields = [{
-  title: 'Email',
-  name: 'email',
-  type: 'email',
-  description: 'Email is email',
-  placeholder: 'ivanpetrov@mail.ru',
+  title: 'Title',
+  name: 'title',
+  type: 'text',
+  description: 'Title is title',
+  placeholder: 'Project1',
   error: ''
 }, {
-  title: 'Password',
-  name: 'password1',
-  type: 'password',
-  description: '8 characters or more. Be tricky',
-  placeholder: '••••••••',
+  title: 'Description',
+  name: 'description',
+  type: 'text',
+  description: 'Description',
+  placeholder: 'Top project ever!',
   error: ''
 }];
 
