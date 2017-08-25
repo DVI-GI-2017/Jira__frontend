@@ -63,9 +63,8 @@ const mapDispatchToProps = (dispatch: any) => {
     setProject: async (project: any) => {
       dispatch(togglePreloader());
       dispatch(setCurrentProjects(project));
-      console.log(project);
+
       const tasks = await getTasks(project._id);
-      console.log(await tasks.json());
 
       dispatch(setTasks(await tasks.json()));
       dispatch(togglePreloader());

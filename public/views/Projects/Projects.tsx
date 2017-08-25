@@ -142,15 +142,11 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch(togglePreloader());
 
       if (userId) {
-        console.log(userId);
         let projects = await getProjects(userId);
 
         if (+projects.status === 200) {
           projects = await projects.json();
-          console.log(projects[0]._id);
-
           const tasks = await getTasks(projects[0]._id);
-          console.log(await tasks.json());
 
           dispatch(setTasks(await tasks.json()));
         } else {
