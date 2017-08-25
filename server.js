@@ -8,7 +8,6 @@ app.use('/signup', express.static('public'));
 app.use('/signin', express.static('public'));
 app.use('/projects', express.static('public'));
 app.use('/new-project', express.static('public'));
-app.use('*', express.static('public'));
 
 app.use(parser.json());
 
@@ -31,7 +30,7 @@ app.get('/api/v1/cur-user', (req, res) => {
   http.get(`${backendURI}/cur-user`, (response) => {
     res.sendStatus(response.statusCode);
   }).on('error', e => {
-    res.send(e);
+    res.status(401).send(e);
   });
 });
 
@@ -98,6 +97,8 @@ app.get('/api/v1/tasks', (req, res) => {
     res.send(e);
   });
 });
+
+app.use('*', express.static('public'));
 
 app.listen(process.env.PORT || 3200, () => {
   console.log(`App started on port ${process.env.PORT || 3200}`);
