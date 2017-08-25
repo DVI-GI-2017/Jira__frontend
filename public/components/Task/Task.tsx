@@ -38,9 +38,6 @@ export class Task extends React.Component<Props, any> {
             <p className='description'>{description}</p>
             <p className='initiator__block'><span className='sub_title initiator__title'>Initiator:</span>
               <span className='initiator__people'>{initiator}</span></p>
-            <div className='post-meta'>
-              <Linked pathTo={path}><span className="task__more">More</span></Linked>
-            </div>
           </div>
         </div>
       </div>

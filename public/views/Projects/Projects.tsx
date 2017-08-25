@@ -51,7 +51,7 @@ class Projects extends React.Component<Props, any> {
           title={item.title}
           description={item.description}
           path={`/tasks${item._id}`}
-          initiator={item.initiator_id.length > 10 ? `${item.initiator_id.slice(0, 10)}...` : item.initiator_id}
+          initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
           key={index}
         />
       );
