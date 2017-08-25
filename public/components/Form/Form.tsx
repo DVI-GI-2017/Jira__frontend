@@ -16,6 +16,7 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import {setCurrentUser} from '../../actions/User/User.actions';
 
 import './Form.scss';
+import set = Reflect.set;
 
 const errors: any = {};
 
@@ -233,7 +234,7 @@ const mapDispatchToProps = (dispatch: any) => {
           data: JSON.stringify(user)
         }));
 
-        browserHistory.push('/projects');
+        location.reload();
       } else {
         dispatch(setError(await result.json()));
       }
@@ -247,7 +248,6 @@ const mapDispatchToProps = (dispatch: any) => {
       const result = await send(url, data);
 
       if (+result.status === 200) {
-        // console.log(await result.json());
         browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));

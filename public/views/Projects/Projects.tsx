@@ -27,6 +27,7 @@ class Projects extends React.Component<Props, any> {
   private firstColumnTasks: Array<any> = [];
   private secondColumnTasks: Array<any> = [];
   private thirdColumnTasks: Array<any> = [];
+  private kostyl: number = 0;
 
   componentWillMount() {
     if (!this.props.isAuthenticated) {
@@ -88,17 +89,17 @@ class Projects extends React.Component<Props, any> {
       switch (index % 3) {
         case 0:
           this.firstColumnTasks.push((
-              <Task
-                day='27'
-                month='Mar'
-                priority={item.labels ? item.labels[0] : 'High'}
-                title={item.title}
-                description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
-                path={`/tasks${item._id}`}
-                initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
-                key={index}
-              />
-            ));
+            <Task
+              day='27'
+              month='Mar'
+              priority={item.labels ? item.labels[0] : 'High'}
+              title={item.title}
+              description={item.description.length > 50 ? `${item.description.slice(0, 50)}...` : item.description}
+              path={`/tasks${item._id}`}
+              initiator={item.initiator_id.length > 16 ? `${item.initiator_id.slice(0, 16)}...` : item.initiator_id}
+              key={index}
+            />
+          ));
           break;
         case 1:
           this.secondColumnTasks.push((
