@@ -5,6 +5,7 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import {getProjects, setCurrentProjects, setProjects} from '../../actions/Project/Project.actions';
 
 import './Sidebar.scss';
+import {getTasks, setTasks} from '../../actions/Tasks/Tasks.actions';
 
 interface Props {
   isAuthenticated: boolean;
@@ -62,6 +63,10 @@ const mapDispatchToProps = (dispatch: any) => {
     setProject: async (project: any) => {
       dispatch(togglePreloader());
       dispatch(setCurrentProjects(project));
+
+      const tasks = await getTasks(project._id);
+
+      dispatch(setTasks(await tasks.json()));
       dispatch(togglePreloader());
     }
   }
