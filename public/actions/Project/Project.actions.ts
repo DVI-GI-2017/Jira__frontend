@@ -19,6 +19,10 @@ export function getProjects(id: string): any {
   return transport.get(`/users/${id}/projects`);
 }
 
-export function getProject(filter: string): any {
-  return transport.get(`/project/${filter}`);
+export function getAllProjects(): any {
+  return transport.get(`/projects`);
+}
+
+export function getProjectUsers(id: string): any {
+  return transport.get(`/projects/${id}/users`);
 }

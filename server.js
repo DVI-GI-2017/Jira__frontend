@@ -8,6 +8,8 @@ app.use('/signup', express.static('public'));
 app.use('/signin', express.static('public'));
 app.use('/projects', express.static('public'));
 app.use('/new-project', express.static('public'));
+app.use('/new-task', express.static('public'));
+app.use('/add-user', express.static('public'));
 
 app.use(parser.json());
 
@@ -170,6 +172,95 @@ app.get('/api/v1/projects/:id/tasks', (req, res) => {
   }).on('error', e => {
     res.status(400).send(e);
   });
+});
+
+app.get('/api/v1/projects/:id/users', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.params.id}/users`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
+app.get('/api/v1/users', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/users`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
+app.get('/api/v1/projects', (req, res) => {
+  http.get(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects`,
+    method: 'GET',
+    headers: {
+      'Authorization': req.header('Authorization')
+    }
+  }), (response) => {
+    response.on('data', data => {
+      res.header('Content-Type', 'application/json');
+      res.status(200).send(data);
+    });
+  }).on('error', e => {
+    res.status(400).send(e);
+  });
+});
+
+app.post('/api/v1/add-user', (req, res) => {
+  const request = http.request(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.body.project}/users`,
+    method: 'POST',
+    headers: {
+      'Authorization': req.header('Authorization'),
+      'Content-Type': 'text/plain'
+    }
+  }), (response) => {
+    console.log(response.statusCode);
+    console.log(response.body);
+    res.header('Content-Type', 'application/json');
+    res.sendStatus(200);
+  });
+
+  request.write(JSON.stringify(req.body.user));
+  request.end();
+});
+
+app.post('/api/v1/new-task', (req, res) => {
+  const request = http.request(Object.assign(baseOptionsBackend, {
+    path: `/api/v1/projects/${req.body.proj_id}/tasks`,
+    method: 'POST',
+    headers: {
+      'Authorization': req.header('Authorization'),
+      'Content-Type': 'text/plain'
+    }
+  }), (response) => {
+    console.log(response.statusCode);
+    console.log(response.body);
+    res.header('Content-Type', 'application/json');
+    res.sendStatus(200);
+  });
+
+  request.write(JSON.stringify(req.body));
+  request.end();
 });
 
 app.use('*', express.static('public'));

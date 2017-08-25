@@ -13,6 +13,8 @@ import SignUp from './views/SignUp/SignUp';
 import {Error} from './views/Error/Error';
 import Projects from './views/Projects/Projects';
 import NewProject from './views/NewProject/NewProject';
+import NewTask from './views/NewTask/NewTask';
+import AddUser from './views/AddUser/AddUser';
 
 import {setCurrentUser} from './actions/User/User.actions';
 import {setDevice} from './actions/Mobile/Mobile.actions';
@@ -43,6 +45,8 @@ const App = () => (
         <Route path={ RoutesMap.SIGNUP } component={ SignUp as any }/>
         <Route path={ RoutesMap.PROJECTS } component={ Projects as any }/>
         <Route path={ RoutesMap.NEW_PROJECT } component={ NewProject as any }/>
+        <Route path={ RoutesMap.NEW_TASK } component={ NewTask as any }/>
+        <Route path={ RoutesMap.ADD_USER } component={ AddUser as any }/>
         <Route path='*' component={ Error as any }/>
       </Route>
     </Router>

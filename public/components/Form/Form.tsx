@@ -16,6 +16,7 @@ import {togglePreloader} from '../../actions/PreLoader/PreLoader.actions';
 import {setCurrentUser} from '../../actions/User/User.actions';
 
 import './Form.scss';
+import set = Reflect.set;
 
 const errors: any = {};
 
@@ -24,6 +25,8 @@ interface Props {
   control: string;
   error?: string;
   submit?: any;
+  users?: any;
+  project?: any;
   type?: string;
   send?: (url: string, data: any) => any;
   sendProject?: (url: string, data: any) => any;
@@ -55,35 +58,57 @@ class Form extends React.Component<Props, State> {
     const {handleSubmit, fields, errors, control}: any = this.props;
 
     const content: Array<any> = fields.map((item: any, index: number) => {
-      return (
-        <div key={ index }>
-          <Field
-            name={ item.name }
-            names={ item.name }
-            type={ item.type }
-            component={ this._renderField }
-            label={ item.title }
-            description={ item.description }
-            placeholder={ item.placeholder }
-          />
-        </div>
-      )
+      if (item.type !== 'select') {
+        return (
+          <div key={index}>
+            <Field
+              name={item.name}
+              names={item.name}
+              type={item.type}
+              component={this._renderField}
+              label={item.title}
+              description={item.description}
+              placeholder={item.placeholder}
+            />
+          </div>
+        )
+      }
+    });
+
+    const selector: Array<any> = fields.map((item: any, index: number) => {
+      if (item.type === 'select') {
+        const options: Array<any> = item.options.map((option: any, index: number) => {
+          return (
+            <option key={index}>{option.title}</option>
+          );
+        });
+
+        return (
+          <div key={index}>
+            <p>{item.title}</p>
+            <select className="soflow-color">
+              {options}
+            </select>
+          </div>
+        );
+      }
     });
 
     return (
       <div className='form__wrapper-elements'>
         <div className='wrapper__form-center'>
-          <FormHeader />
+          <FormHeader/>
           <form
             className='form'
             name='form'
-            ref={ (form: any) => {
+            ref={(form: any) => {
               this._form = form
             }}
             onSubmit={handleSubmit}>
-            <FormError text={ errors }/>
-            <FormContent content={ content }/>
-            <FormButton text={ control } click={ this.submit.bind(this) }/>
+            <FormError text={errors}/>
+            <FormContent content={content}/>
+            {selector}
+            <FormButton text={control} click={this.submit.bind(this)}/>
           </form>
         </div>
       </div>
@@ -100,6 +125,12 @@ class Form extends React.Component<Props, State> {
         this._sendForm('/signin', JSON.stringify(this._signUpPack(fields)));
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
         this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
+      } else if (window.location.pathname.indexOf('add-user') !== -1) {
+        console.log(this._getUserPack());
+        this._sendProject('/add-user', JSON.stringify((this._getUserPack())));
+      } else if (window.location.pathname.indexOf('new-task') !== -1) {
+        console.log(this._getTaskPack(fields));
+        this._sendProject('/new-task', JSON.stringify((this._getTaskPack(fields))));
       }
     }
   }
@@ -132,18 +163,18 @@ class Form extends React.Component<Props, State> {
                }: any) {
     errors[names] = !!error;
     return (
-      <li className={ (touched && error && 'error ') || (touched && !error && 'ok') }>
-        <FormLabel title={ label }/>
+      <li className={(touched && error && 'error ') || (touched && !error && 'ok')}>
+        <FormLabel title={label}/>
         <FormInput
-          name={ names }
-          type={ type }
-          input={ ...input }
-          placeholder={ placeholder }
+          name={names}
+          type={type}
+          input={...input}
+          placeholder={placeholder}
         />
         <FormDescription
-          touched={ touched }
-          description={ description }
-          error={ error }
+          touched={touched}
+          description={description}
+          error={error}
         />
       </li>
     );
@@ -175,6 +206,46 @@ class Form extends React.Component<Props, State> {
       'user': JSON.parse(localStorage.getItem('user'))._id
     }
   }
+
+  _getUserPack(): any {
+    const sel: any = document.querySelectorAll('.soflow-color')[0];
+    const users: any = this.props.users;
+
+    console.log(users);
+    console.log(this.props.project);
+    let result: string = '';
+    for (let i = 0; i < users.length; ++i) {
+      if (users[i].email === sel.options[sel.selectedIndex].text) {
+        result += users[i]._id
+      }
+    }
+
+    return {
+      'user': result,
+      'project': this.props.project._id
+    }
+  }
+
+  _getTaskPack(data: any): any {
+    const sel2: any = document.querySelectorAll('.soflow-color')[1];
+
+    console.log(this.props.project);
+    console.log(this.props.users);
+
+    let userId: any;
+    for (let i = 0; i < this.props.users.length; ++i) {
+      if (this.props.users[i].email === sel2.options[sel2.selectedIndex].text) {
+        userId = this.props.users[i]._id;
+      }
+    }
+
+    return {
+      'title': data[0].value,
+      'description': data[1].value,
+      'proj_id': this.props.project._id,
+      'initiator_id': userId
+    }
+  }
 }
 
 const ReduxForm: any = reduxForm({
@@ -186,7 +257,9 @@ const ReduxForm: any = reduxForm({
 
 const mapStateToProps = (state: any) => {
   return {
-    errors: state.error
+    errors: state.error,
+    users: state.users.users,
+    project: state.project.project
   }
 };
 
@@ -211,7 +284,7 @@ const mapDispatchToProps = (dispatch: any) => {
           data: JSON.stringify(user)
         }));
 
-        browserHistory.push('/projects');
+        location.reload();
       } else {
         dispatch(setError(await result.json()));
       }
@@ -225,7 +298,6 @@ const mapDispatchToProps = (dispatch: any) => {
       const result = await send(url, data);
 
       if (+result.status === 200) {
-        // console.log(await result.json());
         browserHistory.push('/projects');
       } else {
         dispatch(setError(await result.json()));
