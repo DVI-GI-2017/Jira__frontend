@@ -33,9 +33,7 @@ class Projects extends React.Component<Props, any> {
       return;
     }
 
-    console.log(this.props.user);
-    console.log(this.props.user._id);
-    this.props.getProjectsList(this.props.user._id);
+    this.props.getProjectsList(this.props.user.data._id);
   }
 
   render() {

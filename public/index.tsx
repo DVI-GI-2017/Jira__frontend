@@ -26,7 +26,7 @@ import './static/css/main.scss';
 if (localStorage.token) {
   store.dispatch(setCurrentUser({
     token: localStorage.token,
-    user: JSON.parse(localStorage.user),
+    data: JSON.parse(localStorage.user),
   }));
 }
 
