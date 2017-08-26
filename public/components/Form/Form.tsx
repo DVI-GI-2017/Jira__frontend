@@ -126,10 +126,8 @@ class Form extends React.Component<Props, State> {
       } else if (window.location.pathname.indexOf('new-project') !== -1) {
         this._sendProject('/new-project', JSON.stringify((this._newProjectPack(fields))));
       } else if (window.location.pathname.indexOf('add-user') !== -1) {
-        console.log(this._getUserPack());
         this._sendProject('/add-user', JSON.stringify((this._getUserPack())));
       } else if (window.location.pathname.indexOf('new-task') !== -1) {
-        console.log(this._getTaskPack(fields));
         this._sendProject('/new-task', JSON.stringify((this._getTaskPack(fields))));
       }
     }
@@ -211,8 +209,6 @@ class Form extends React.Component<Props, State> {
     const sel: any = document.querySelectorAll('.soflow-color')[0];
     const users: any = this.props.users;
 
-    console.log(users);
-    console.log(this.props.project);
     let result: string = '';
     for (let i = 0; i < users.length; ++i) {
       if (users[i].email === sel.options[sel.selectedIndex].text) {
@@ -228,9 +224,6 @@ class Form extends React.Component<Props, State> {
 
   _getTaskPack(data: any): any {
     const sel2: any = document.querySelectorAll('.soflow-color')[1];
-
-    console.log(this.props.project);
-    console.log(this.props.users);
 
     let userId: any;
     for (let i = 0; i < this.props.users.length; ++i) {
