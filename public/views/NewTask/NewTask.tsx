@@ -65,9 +65,6 @@ class NewTask extends React.Component<Props, void> {
     const {isAuthenticated, device, project, users} = this.props;
     const classes = device ? 'registration' : 'mobile__registration';
 
-    console.log(project);
-    console.log(users);
-
     if (users) {
       this.props.getUsersList(project._id);
     }
