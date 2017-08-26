@@ -1,7 +1,8 @@
 #### Task manager [Arij]
 
-Приложение [ссылка на heroku app](https://jira-dvi-gi.herokuapp.com/)  
-Презентация [ссылка на github pages](https://dvi-gi-2017.github.io/Jira__presentation/)
+Приложение [heroku app](https://jira-dvi-gi.herokuapp.com/)  
+Презентация [github pages](https://dvi-gi-2017.github.io/Jira__presentation/)  
+Презентация [pdf](http://bit.ly/2wdj9UO)  
 
 #### Технологии
 - TypeScript для написания логики,
